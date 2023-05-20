@@ -1,0 +1,87 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.primary-color{
+	-fx-background-color: #13123A;
+}
+.secondary-color{
+	-fx-background-color : #00002C;
+}
+.showinfo-color{
+	-fx-background-color : #243662;
+	-fx-border-width : 3 3 3 3 ;
+	-fx-border-color : #fff;
+}
+
+.choicebox{
+	-fx-background-color : #243662;
+	-fx-background-radius : 30 ;
+}
+.choice-box .label {
+     -fx-text-fill: white; 
+}
+.choice-box .context-menu { 
+	-fx-background-color: black;
+}
+
+.choice-box .menu-item:focused { 
+	-fx-background-color:#13123A;
+}
+.switchbutton{
+	-fx-background-color : #13123A;
+	
+}
+.switchbutton:hover{
+	-fx-background-color: #3C3D5B;
+	-fx-border-color: #fff;
+ 	-fx-border-width: 0 3 0 0;
+	
+	
+}
+
+.loginselectedbutton:hover{
+  -fx-background-color: #344397;
+  
+}
+.selectedbutton:hover{
+  -fx-background-color: #00002C;
+}
+.text-input{
+	-fx-background-color : rgba(0,0,0,0);
+	-fx-border-width : 0 0 1 0 ;
+	-fx-border-color : #242551;
+	-fx-text-inner-color:#fff;
+
+}
+.textarea-input{
+	-fx-text-inner-color:#000000;
+}
+.login-input{
+	-fx-background-color : rgba(0,0,0,0);
+	-fx-border-radius : 30 ;
+	-fx-border-width : 1 1 1 1 ;
+	-fx-border-color : #fff;
+	-fx-text-inner-color:#fff;
+}
+
+
+.text-output{
+	-fx-text-inner-color:#fff;
+}
+.editbutton{
+	-fx-background-color : #242551;
+	-fx-background-radius : 30 ;
+}
+.light-gray-background{
+	-fx-background-color : #bfbfbf;
+}
+.checkbox-box .box{
+	-fx-background-radius : 30 ;
+	-fx-background-color : #243662;
+}
+.checkbox-box:selected .mark{
+	-fx-background-color : white;
+}
+
+.Roundbutton {
+  -fx-background-color: #243662;
+  -fx-color: white;
+}
