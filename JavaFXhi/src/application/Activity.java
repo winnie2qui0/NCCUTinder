@@ -7,6 +7,7 @@ public class Activity {
 	private String description;
 	private int peoplenumbers;
 	private String date;
+	private String time;
 	private ArrayList<Profile> profiles;
 	private Profile host;
 	private String title;

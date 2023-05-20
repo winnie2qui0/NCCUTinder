@@ -7,8 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -31,32 +34,92 @@ public class DatingController implements Initializable{
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	@FXML
+	 @FXML
     private TextField AgeField;
 
     @FXML
-    private TextField ContactField;
+    private TextField BookField;
+
+    @FXML
+    private Button BtnPost;
+
+    @FXML
+    private TextField CelebrityField;
+
+    @FXML
+    private TextField ContactFBField;
+
+    @FXML
+    private TextField ContactIGField;
+
+    @FXML
+    private CheckBox DrinkingCheck;
+
+    @FXML
+    private VBox Layout;
 
     @FXML
     private TextField MBTIField;
 
     @FXML
+    private TextField MovieField;
+
+    @FXML
+    private TextField MusicField;
+
+    @FXML
     private TextField NameField;
+
+    @FXML
+    private CheckBox NonDrinkingCheck;
+
+    @FXML
+    private CheckBox NonSmokingCheck;
 
     @FXML
     private TextField PasswordField;
 
     @FXML
+    private DatePicker PostDatePicker;
+
+    @FXML
+    private TextArea PostDescriptionField;
+
+    @FXML
+    private TextField PostLocationField;
+
+    @FXML
+    private TextField PostPeopleField;
+
+    @FXML
+    private TextField PostTimeField;
+
+    @FXML
+    private TextField PostTitleField;
+
+    @FXML
+    private ChoiceBox<String> PurposeChoice;
+
+    @FXML
+    private TextField SexualPerferenceField;
+
+    @FXML
+    private CheckBox SmokingCheck;
+
+    @FXML
     private Label UserIDLabel;
 
     @FXML
-    private TextField UsernameField;
+    private ImageView UserImage;
 
     @FXML
-    private TextField bookField;
+    private Label UserNameLabel;
 
     @FXML
     private Button btnEditprofile;
+
+    @FXML
+    private Button btnSaveChanges;
 
     @FXML
     private Button btndating;
@@ -71,13 +134,7 @@ public class DatingController implements Initializable{
     private Button btnprofile;
 
     @FXML
-    private Button btnsaving;
-
-    @FXML
     private Button btnsetting;
-
-    @FXML
-    private TextField celebrityField;
 
     @FXML
     private AnchorPane datingpage;
@@ -89,13 +146,7 @@ public class DatingController implements Initializable{
     private TextField gradeField;
 
     @FXML
-    private ImageView imageview;
-
-    @FXML
-    private TextField movieField;
-
-    @FXML
-    private TextField musicField;
+    private Button logout;
 
     @FXML
     private AnchorPane postingpage;
@@ -104,19 +155,7 @@ public class DatingController implements Initializable{
     private AnchorPane profilepage;
 
     @FXML
-    private ChoiceBox<String> purposechoice;
-
-    @FXML
     private AnchorPane settingpage;
-
-    @FXML
-    private TextField sexualperferenceField;
-    
-    @FXML
-    private Button logout;
-    
-    @FXML
-	private VBox layout;
     
     private Profile profile;
 
@@ -133,7 +172,7 @@ public class DatingController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		purposechoice.getItems().addAll("純交友","找另一半","就玩玩");
+		PurposeChoice.getItems().addAll("純交友","找另一半","就玩玩");
 		
 		List<Activity> activities = new ArrayList<>(activities());
 		for(int i= 0; i< activities.size();i++) {
@@ -144,7 +183,7 @@ public class DatingController implements Initializable{
 				HBox hbox = fxmlloader.load();
 				ActivityitemController ac = fxmlloader.getController();
 				ac.setData(activities.get(i));
-				layout.getChildren().add(hbox);
+				Layout.getChildren().add(hbox);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

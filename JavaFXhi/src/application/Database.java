@@ -16,6 +16,8 @@ public class Database {
 	private String url;
 	private String username;
 	private String password;
+	private Connection conn;
+	private Statement stat;
 	
 	
 	public Database() {
@@ -29,22 +31,51 @@ public class Database {
 	}
 	public void DBConnected() {
 	
-	try {
-		
-		Connection conn = DriverManager.getConnection(url, username, password);
-		System.out.println("DB Connectd");
-		Statement stat = conn.createStatement();
-		//adjust query code later
-	    String query = "SELECT * FROM twice";
+		try {
+			
+			conn = DriverManager.getConnection(url, username, password);
+			System.out.println("DB Connectd");
+			stat = conn.createStatement();
+		    
+		        
+			
+		} 
+		catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void ChangeProfile() throws SQLException {
+		String query = "SELECT * FROM table";
 	    ResultSet result = stat.executeQuery(query);
-	        
 		
-	} 
-	catch (SQLException e) {
-		
-		e.printStackTrace();
 	}
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	
 //	public static String showResultSet(ResultSet result) throws SQLException {
 //        ResultSetMetaData metaData = result.getMetaData();

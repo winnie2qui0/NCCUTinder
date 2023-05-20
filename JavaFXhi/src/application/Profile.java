@@ -6,7 +6,8 @@ public class Profile {
 	private String Username;
 	private String password;
 	private int age;
-	private String contact;
+	private String instagram;
+	private String facebook;
 	private String department;
 	private int grade;
 	private String MBTI;
@@ -64,13 +65,7 @@ public class Profile {
 		this.age = age;
 	}
 
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
+	
 
 	public String getDepartment() {
 		return department;
@@ -158,6 +153,22 @@ public class Profile {
 
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
+	}
+
+	public String getInstagram() {
+		return instagram;
+	}
+
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
 	}
 	
 	
