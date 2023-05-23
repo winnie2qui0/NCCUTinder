@@ -52,7 +52,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Downloads/icon/user.png" />
+                              <Image url="@../../../../../Downloads/icon/user.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -83,7 +83,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Downloads/icon/add.png" />
+                              <Image url="@../../../../../Downloads/icon/add.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -109,7 +109,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Downloads/icon/home.png" />
+                              <Image url="@../../../../../Downloads/icon/home.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -135,7 +135,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Downloads/icon/settings.png" />
+                              <Image url="@../../../../../Downloads/icon/settings.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -497,96 +497,6 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="settingpage" prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
-               <styleClass>
-                  <String fx:value="primary-color" />
-                  <String fx:value="secondary-color" />
-               </styleClass>
-               <children>
-                  <VBox alignment="CENTER" prefHeight="788.0" prefWidth="911.0" spacing="20.0" styleClass="secondary-color" stylesheets="@application.css">
-                     <children>
-                        <Label prefHeight="33.0" prefWidth="886.0" text="Settings" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="25.0" />
-                           </font>
-                        </Label>
-                        <VBox prefHeight="138.0" prefWidth="777.0">
-                           <children>
-                              <Label prefHeight="33.0" prefWidth="886.0" text="User" textFill="#948abc">
-                                 <font>
-                                    <Font name="Arial Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="79.0" text="UserName" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="200.0" prefWidth="140.0" />
-                                    <Label fx:id="UserIDLabel" prefHeight="44.0" prefWidth="312.0" stylesheets="@application.css" text="Winnie Huang" textFill="WHITE">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="79.0" text="UserID" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="200.0" prefWidth="140.0" />
-                                    <Label fx:id="UserIDLabel" prefHeight="44.0" prefWidth="312.0" stylesheets="@application.css" text="113525" textFill="WHITE">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="85.0" text="Password" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="47.0" prefWidth="131.0" />
-                                    <TextField fx:id="PasswordField" prefHeight="26.0" prefWidth="333.0" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <Button fx:id="btnpasswordchange" mnemonicParsing="false" onAction="#btnpasswordsaving" prefHeight="47.0" prefWidth="203.0" styleClass="editbutton" stylesheets="@application.css" text="change password" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="19.0" />
-                           </font>
-                        </Button>
-                        <HBox alignment="BOTTOM_LEFT" prefHeight="269.0" prefWidth="829.0" />
-                        <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Button fx:id="logout" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#logout" prefHeight="54.0" prefWidth="122.0" stylesheets="@application.css" text="Log out" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="editbutton" />
-                                    <String fx:value="selectedbutton" />
-                                    <String fx:value="pressbutton" />
-                                 </styleClass>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="postingpage" prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
                <styleClass>
                   <String fx:value="primary-color" />
@@ -692,11 +602,105 @@
                                  </padding>
                               </HBox>
                            </children></VBox>
-                        <Button fx:id="BtnPost" mnemonicParsing="false" onAction="#btnchangesaving" prefHeight="50.0" prefWidth="155.0" styleClass="editbutton" stylesheets="@application.css" text="Post it !" textFill="WHITE">
+                        <Button fx:id="BtnPostIt" mnemonicParsing="false" onAction="#SavePost" prefHeight="50.0" prefWidth="155.0" stylesheets="@application.css" text="Post it !" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="editbutton" />
+                              <String fx:value="selectedbutton" />
+                           </styleClass>
                         </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="settingpage" prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
+               <styleClass>
+                  <String fx:value="primary-color" />
+                  <String fx:value="secondary-color" />
+               </styleClass>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="788.0" prefWidth="911.0" spacing="20.0" styleClass="secondary-color" stylesheets="@application.css">
+                     <children>
+                        <Label prefHeight="33.0" prefWidth="886.0" text="Settings" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="138.0" prefWidth="777.0">
+                           <children>
+                              <Label prefHeight="33.0" prefWidth="886.0" text="User" textFill="#948abc">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="79.0" text="UserName" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="200.0" prefWidth="140.0" />
+                                    <Label fx:id="UserNameLabel" prefHeight="44.0" prefWidth="312.0" stylesheets="@application.css" text="Winnie Huang" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="79.0" text="UserID" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="200.0" prefWidth="140.0" />
+                                    <Label fx:id="UserIDLabel" prefHeight="44.0" prefWidth="312.0" stylesheets="@application.css" text="113525" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="85.0" text="Password" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="47.0" prefWidth="131.0" />
+                                    <TextField fx:id="PasswordField" prefHeight="26.0" prefWidth="333.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnpasswordchange" mnemonicParsing="false" onAction="#btnpasswordsaving" prefHeight="47.0" prefWidth="203.0" styleClass="editbutton" stylesheets="@application.css" text="change password" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="269.0" prefWidth="829.0" />
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="logout" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#logout" prefHeight="54.0" prefWidth="122.0" stylesheets="@application.css" text="Log out" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="editbutton" />
+                                    <String fx:value="selectedbutton" />
+                                    <String fx:value="pressbutton" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />

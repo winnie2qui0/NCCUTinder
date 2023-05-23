@@ -4,11 +4,15 @@ import java.util.*;
 public class User {
 	private ArrayList<String> username; 
 	private ArrayList<String> password;
+	private ArrayList<Profile> profiles;
 	private boolean valid ;
 	private Profile profile;
 	
+	
 	public User() {
-		username = new ArrayList<String>(); password = new ArrayList<String>();
+		username = new ArrayList<String>(); 
+		password = new ArrayList<String>();
+		profiles = new ArrayList<Profile>();
 		valid = false;
 	}
 	
@@ -21,10 +25,26 @@ public class User {
 		password.add(pw); 
 		profile = new Profile(name,pw);
 		
+		//建立profile db 加入新的profile
+		
+		profiles.add(profile);
+		
 		return;
 	}
 	public boolean getValid() {
 		return valid;
+	}
+	
+	public Profile getProfile(String name) {
+		Profile u = null;
+		for(Profile p: profiles) {
+			if(p.getUsername().equals(name)){
+				u = p ;
+			}
+		}
+		return u ;
+		
+		
 	}
 	
 	
@@ -39,6 +59,8 @@ public class User {
 		if(password.get(id).equals(PW)) return;
 		throw new PasswordError("Password is wrong");
 	} 
+	
+	
 }
 class UserError extends Exception { 
 	
