@@ -27,7 +27,7 @@ public class User {
 		
 		//建立profile db 加入新的profile
 		
-		profiles.add(profile);
+		
 		
 		return;
 	}

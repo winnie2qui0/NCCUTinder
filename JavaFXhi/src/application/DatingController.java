@@ -168,9 +168,6 @@ public class DatingController implements Initializable {
     
     private List<ActivityInformation> activities = new ArrayList<>();
     
-    public void setProfile(Profile profile) {
-        DatingController.profile = profile;
-    }
     
     
 

@@ -81,8 +81,7 @@ public class LoginController {
 		
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Dating.fxml"));
 			root = loader.load();
-			DatingController datingController = loader.getController();
-	        datingController.setProfile(profile);
+			
 			
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			Scene scene = new Scene(root);
