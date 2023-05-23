@@ -36,7 +36,7 @@
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Downloads/add.png" />
+                  <Image url="@../../../../../Downloads/add.png" />
                </image>
             </ImageView>
          </graphic>
@@ -46,7 +46,7 @@
             <Font size="18.0" />
          </font>
          <graphic>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="90.0" text="details">
+            <Button fx:id="Btndetial" mnemonicParsing="false" onAction="#ShowActivityDetail" prefHeight="46.0" prefWidth="90.0" text="details">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>

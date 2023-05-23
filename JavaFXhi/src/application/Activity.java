@@ -1,22 +1,22 @@
 package application;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Activity {
 	
 	private String description;
 	private int peoplenumbers;
-	private String date;
-	private String time;
-	private ArrayList<Profile> profiles;
-	private Profile host;
+	private LocalDate date;
 	private String title;
 	
-	public Activity(String date, String title, String description, int num) {
+	public Activity(LocalDate date , String title , String description ,int num) {
+		
 		this.date = date;
 		this.title = title;
 		this.description = description;
 		this.peoplenumbers = num;
+	
 	}
 	
 	
@@ -39,42 +39,13 @@ public class Activity {
 	public void setPeoplenumbers(int peoplenumbers) {
 		this.peoplenumbers = peoplenumbers;
 	}
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	public ArrayList<Profile> getProfiles() {
-		return profiles;
-	}
-	public void setProfiles(ArrayList<Profile> profiles) {
-		this.profiles = profiles;
-	}
-	public Profile getHost() {
-		return host;
-	}
-	public void setHost(Profile host) {
-		this.host = host;
-	}
 	
-	public void addProfile(Profile p) {
-		
-		profiles.add(p);
-		
-	}
-	
-	public void deleteProfile(Profile p) {
-			
-		profiles.remove(p);
-			
-	}
 
-
-
-	
-	
-	
-	
 
 }

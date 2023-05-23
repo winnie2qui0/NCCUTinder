@@ -48,8 +48,9 @@ public class Database {
 	
 	
 	public void ChangeProfile() throws SQLException {
-		String query = "SELECT * FROM table";
+		String query = "SELECT  * FROM table";
 	    ResultSet result = stat.executeQuery(query);
+	    
 		
 	}
 	

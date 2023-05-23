@@ -2,6 +2,7 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
@@ -31,10 +33,15 @@ public class LoginController {
 	@FXML
 	private Label Loginsuccess;
 	
+	private Profile profile;
+	
 	private User user = new User();
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	
+	
+	
 
 	// Event Listener on Button[#btnSingup].onAction
 	@FXML
@@ -45,6 +52,7 @@ public class LoginController {
 			user.add(LoginUsername.getText(),LoginPasswordfield.getText());
 			if(user.getValid()== true ) {
 				Loginsuccess.setText("You are successfully signed up");
+				
 			}
 			
 		} catch (PasswordError  e) {
@@ -69,6 +77,8 @@ public class LoginController {
 		try {
 			user.checkUserExist(LoginUsername.getText());
 			user.checkPassword(LoginUsername.getText(), LoginPasswordfield.getText());
+			profile = user.getProfile(LoginUsername.getText());
+		
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Dating.fxml"));
 			root = loader.load();
 			
@@ -93,4 +103,5 @@ public class LoginController {
 			alert.showAndWait();
 		}
 	}
+	
 }

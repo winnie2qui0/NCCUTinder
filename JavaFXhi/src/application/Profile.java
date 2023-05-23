@@ -1,6 +1,6 @@
 package application;
 
-public class Profile {
+public class Profile extends User{
 	private Image image;
 	private String name;
 	private String Username;
