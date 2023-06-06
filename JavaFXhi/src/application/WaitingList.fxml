@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="125.0" prefWidth="119.0" styleClass="Roundbutton" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WaitingListController">
+   <children>
+      <VBox prefHeight="142.0" prefWidth="135.0">
+         <children>
+            <Button fx:id="BtnWaitingProfile" mnemonicParsing="false" onAction="#showWaitingProfile" prefHeight="104.0" prefWidth="144.0" styleClass="Roundbutton" stylesheets="@application.css">
+               <graphic>
+                  <ImageView fx:id="AddImage" fitHeight="83.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Downloads/IMG_6364.JPG" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label fx:id="AddName" alignment="TOP_CENTER" prefHeight="20.0" prefWidth="147.0" text="Jason" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

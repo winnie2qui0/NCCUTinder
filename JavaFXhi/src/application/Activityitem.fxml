@@ -9,12 +9,12 @@
 
 <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityitemController">
    <children>
-      <Label fx:id="date" alignment="CENTER" prefHeight="50.0" prefWidth="111.0" text="9/9">
+      <Label fx:id="date" alignment="CENTER" prefHeight="46.0" prefWidth="196.0" text="2023-05-22">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="title" alignment="CENTER" prefHeight="51.0" prefWidth="223.0" text="指南宮爬山">
+      <Label fx:id="title" alignment="CENTER" prefHeight="51.0" prefWidth="184.0" text="指南宮爬山">
          <font>
             <Font size="22.0" />
          </font>
@@ -46,9 +46,9 @@
             <Font size="18.0" />
          </font>
          <graphic>
-            <Button fx:id="Btndetial" mnemonicParsing="false" onAction="#ShowActivityDetail" prefHeight="46.0" prefWidth="90.0" text="details">
+            <Button fx:id="Btndetial" mnemonicParsing="false" onAction="#ShowActivityDetail" prefHeight="43.0" prefWidth="72.0" text="details">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Button>
          </graphic>

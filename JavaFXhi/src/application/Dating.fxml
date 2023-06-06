@@ -29,12 +29,12 @@
                   <Insets top="50.0" />
                </VBox.margin>
                <children>
-                  <ImageView fx:id="UserImage" fitHeight="118.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="UserImage" fitHeight="147.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/profileimage/IMG_9716.JPG" />
+                        <Image url="@../../../../../Desktop/NCCUImage/主題%202.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="UserNameLabel" text="Winnie Huang" textFill="WHITE">
+                  <Label fx:id="NameLabel" text="Winnie Huang" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -159,344 +159,6 @@
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="datingpage" prefHeight="747.0" prefWidth="902.0" stylesheets="@application.css" StackPane.alignment="CENTER">
-               <styleClass>
-                  <String fx:value="primary-color" />
-                  <String fx:value="secondary-color" />
-               </styleClass>
-               <children>
-                  <VBox alignment="CENTER" layoutX="12.0" layoutY="6.0" prefHeight="754.0" prefWidth="883.0">
-                     <children>
-                        <Label contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="68.0" prefWidth="836.0" text="Dating" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="25.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <AnchorPane prefHeight="657.0" prefWidth="876.0">
-                           <children>
-                              <VBox prefHeight="644.0" prefWidth="855.0">
-                                 <children>
-                                    <HBox prefHeight="51.0" prefWidth="882.0" styleClass="light-gray-background" stylesheets="@application.css">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="105.0" text="日期">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="223.0" text="活動">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="229.0" text="簡介">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="104.0" text="人數">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="95.0" text="加入">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="54.0" prefWidth="125.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="649.0" prefWidth="888.0">
-                                       <children>
-                                          <ScrollPane prefHeight="641.0" prefWidth="886.0" stylesheets="@application.css">
-                                             <content>
-                                                <VBox fx:id="Layout" alignment="TOP_CENTER" prefHeight="793.0" prefWidth="836.0" stylesheets="@application.css" />
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="profilepage" prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
-               <styleClass>
-                  <String fx:value="primary-color" />
-                  <String fx:value="secondary-color" />
-               </styleClass>
-               <children>
-                  <VBox alignment="CENTER" prefHeight="789.0" prefWidth="909.0" spacing="20.0" styleClass="secondary-color" stylesheets="@application.css">
-                     <children>
-                        <Label prefHeight="33.0" prefWidth="886.0" text="Profile settings" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="25.0" />
-                           </font>
-                        </Label>
-                        <VBox prefHeight="228.0" prefWidth="811.0">
-                           <children>
-                              <Label prefHeight="33.0" prefWidth="886.0" text="Profile details" textFill="#948abc">
-                                 <font>
-                                    <Font name="Arial Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="79.0" text="Name" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="200.0" prefWidth="140.0" />
-                                    <TextField fx:id="NameField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="Age" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="49.0" prefWidth="136.0" />
-                                    <TextField fx:id="AgeField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="Instagram" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="49.0" prefWidth="136.0" />
-                                    <TextField fx:id="ContactIGField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="FB" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="49.0" prefWidth="136.0" />
-                                    <TextField fx:id="ContactFBField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="471.0" prefWidth="797.0" spacing="10.0">
-                           <children>
-                              <Label prefHeight="33.0" prefWidth="886.0" text="Description" textFill="#948abc">
-                                 <font>
-                                    <Font name="Arial Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="30.0" prefWidth="95.0" text="Department" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="48.0" prefWidth="123.0" />
-                                    <TextField fx:id="departmentField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="85.0" text="年級" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="47.0" prefWidth="131.0" />
-                                    <TextField fx:id="gradeField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="MBTI" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="49.0" prefWidth="136.0" />
-                                    <TextField fx:id="MBTIField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="Favorite " textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="movie" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="50.0" prefWidth="54.0" />
-                                    <TextField fx:id="MovieField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="music" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="50.0" prefWidth="54.0" />
-                                    <TextField fx:id="MusicField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="book" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="50.0" prefWidth="54.0" />
-                                    <TextField fx:id="BookField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="celebrity" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="50.0" prefWidth="54.0" />
-                                    <TextField fx:id="CelebrityField" prefHeight="27.0" prefWidth="335.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="24.0" prefWidth="775.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="交友目的" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="49.0" prefWidth="136.0" />
-                                    <ChoiceBox fx:id="PurposeChoice" prefHeight="27.0" prefWidth="325.0" stylesheets="@application.css">
-                                       <styleClass>
-                                          <String fx:value="choicebox" />
-                                          <String fx:value="text-output" />
-                                       </styleClass></ChoiceBox>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="789.0" spacing="10.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="菸酒習慣" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="30.0" prefWidth="118.0" />
-                                    <CheckBox fx:id="SmokingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="抽菸" textFill="WHITE" />
-                                    <CheckBox fx:id="NonSmokingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="不抽菸" textFill="WHITE" />
-                                    <CheckBox fx:id="DrinkingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="喝酒" textFill="WHITE" />
-                                    <CheckBox fx:id="NonDrinkingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="不喝酒" textFill="WHITE" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="780.0">
-                                 <children>
-                                    <Label prefHeight="23.0" prefWidth="81.0" text="性取向" textFill="WHITE">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="49.0" prefWidth="136.0" />
-                                    <TextField fx:id="SexualPerferenceField" prefHeight="26.0" prefWidth="333.0">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font></TextField>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <Button fx:id="btnSaveChanges" mnemonicParsing="false" onAction="#btnchangesaving" prefHeight="50.0" prefWidth="155.0" styleClass="editbutton" stylesheets="@application.css" text="Save Changes" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="postingpage" prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
                <styleClass>
                   <String fx:value="primary-color" />
@@ -704,6 +366,371 @@
                      </children>
                      <padding>
                         <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="profilepage" prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
+               <styleClass>
+                  <String fx:value="primary-color" />
+                  <String fx:value="secondary-color" />
+               </styleClass>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="789.0" prefWidth="909.0" spacing="20.0" styleClass="secondary-color" stylesheets="@application.css">
+                     <children>
+                        <Label prefHeight="33.0" prefWidth="886.0" text="Profile settings" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="228.0" prefWidth="811.0">
+                           <children>
+                              <Label prefHeight="33.0" prefWidth="886.0" text="Profile details" textFill="#948abc">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="79.0" text="Name" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="200.0" prefWidth="140.0" />
+                                    <TextField fx:id="NameField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                    <Label alignment="CENTER" prefHeight="23.0" prefWidth="81.0" text="Gender" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="GenderField" prefHeight="34.0" prefWidth="168.0" promptText="M/F">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="Age" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="49.0" prefWidth="136.0" />
+                                    <TextField fx:id="AgeField" prefHeight="32.0" prefWidth="334.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="Instagram" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="49.0" prefWidth="136.0" />
+                                    <TextField fx:id="ContactIGField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                    <HBox alignment="CENTER" prefHeight="38.0" prefWidth="260.0" spacing="6.0">
+                                       <children>
+                                          <Button fx:id="FileButton" alignment="CENTER" mnemonicParsing="false" onAction="#UploadImage" prefHeight="35.0" prefWidth="105.0" styleClass="choicebox" stylesheets="@application.css" text="upload image" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font></Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="FB" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="49.0" prefWidth="136.0" />
+                                    <TextField fx:id="ContactFBField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="471.0" prefWidth="797.0" spacing="10.0">
+                           <children>
+                              <Label prefHeight="33.0" prefWidth="886.0" text="Description" textFill="#948abc">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="121.0" text="Department" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="35.0" prefWidth="92.0" />
+                                    <TextField fx:id="departmentField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="85.0" text="年級" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="47.0" prefWidth="131.0" />
+                                    <TextField fx:id="gradeField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="MBTI" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="49.0" prefWidth="136.0" />
+                                    <TextField fx:id="MBTIField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="Favorite " textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="movie" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="50.0" prefWidth="54.0" />
+                                    <TextField fx:id="MovieField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="music" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="50.0" prefWidth="54.0" />
+                                    <TextField fx:id="MusicField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="book" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="50.0" prefWidth="54.0" />
+                                    <TextField fx:id="BookField" prefHeight="26.0" prefWidth="333.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="celebrity" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="50.0" prefWidth="54.0" />
+                                    <TextField fx:id="CelebrityField" prefHeight="27.0" prefWidth="335.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="24.0" prefWidth="775.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="交友目的" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="49.0" prefWidth="136.0" />
+                                    <ChoiceBox fx:id="PurposeChoice" prefHeight="27.0" prefWidth="325.0" stylesheets="@application.css">
+                                       <styleClass>
+                                          <String fx:value="choicebox" />
+                                          <String fx:value="text-output" />
+                                       </styleClass></ChoiceBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="789.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="菸酒習慣" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="30.0" prefWidth="118.0" />
+                                    <CheckBox fx:id="SmokingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="抽菸" textFill="WHITE" />
+                                    <CheckBox fx:id="NonSmokingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="不抽菸" textFill="WHITE" />
+                                    <CheckBox fx:id="DrinkingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="喝酒" textFill="WHITE" />
+                                    <CheckBox fx:id="NonDrinkingCheck" mnemonicParsing="false" styleClass="checkbox-box" stylesheets="@application.css" text="不喝酒" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="780.0">
+                                 <children>
+                                    <Label prefHeight="23.0" prefWidth="81.0" text="性取向" textFill="WHITE">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="49.0" prefWidth="136.0" />
+                                    <TextField fx:id="SexualPerferenceField" prefHeight="26.0" prefWidth="333.0" promptText="同性戀/異性戀/泛性戀">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnSaveChanges" mnemonicParsing="false" onAction="#btnchangesaving" prefHeight="50.0" prefWidth="155.0" styleClass="editbutton" stylesheets="@application.css" text="Save Changes" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="datingpage" prefHeight="747.0" prefWidth="902.0" stylesheets="@application.css" StackPane.alignment="CENTER">
+               <styleClass>
+                  <String fx:value="primary-color" />
+                  <String fx:value="secondary-color" />
+               </styleClass>
+               <children>
+                  <VBox alignment="CENTER" layoutX="12.0" layoutY="6.0" prefHeight="754.0" prefWidth="883.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="104.0" prefWidth="119.0" text="Dating" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="25.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="BtnUpdate" mnemonicParsing="false" onAction="#UpdateThePost" styleClass="editbutton" stylesheets="@application.css" text="update" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <AnchorPane prefHeight="657.0" prefWidth="876.0">
+                           <children>
+                              <VBox prefHeight="644.0" prefWidth="855.0">
+                                 <children>
+                                    <HBox prefHeight="51.0" prefWidth="882.0" styleClass="light-gray-background" stylesheets="@application.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="105.0" text="日期">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="223.0" text="活動">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="229.0" text="簡介">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="104.0" text="人數">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="95.0" text="加入">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="54.0" prefWidth="125.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="649.0" prefWidth="888.0">
+                                       <children>
+                                          <ScrollPane opacity="0.44" prefHeight="641.0" prefWidth="886.0" stylesheets="@application.css">
+                                             <content>
+                                                <VBox fx:id="Layout" alignment="TOP_CENTER" prefWidth="836.0" spacing="6.0" stylesheets="@application.css" />
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
                      </padding>
                   </VBox>
                </children>

@@ -1,6 +1,7 @@
 package application;
 
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -17,15 +18,18 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.input.MouseEvent;
@@ -33,11 +37,25 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
 public class DatingController implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	
+	
+	 FileChooser fileChooser = new FileChooser();
+	 
+	 @FXML
+	 private Button BtnUpdate;
+	
+	 @FXML
+	 private TextArea FileInput;
+	 
+	 @FXML
+	 private Button FileButton;
+
 	 @FXML
     private TextField AgeField;
 
@@ -110,8 +128,6 @@ public class DatingController implements Initializable {
     @FXML
     private CheckBox SmokingCheck;
 
-    @FXML
-    private Label UserIDLabel;
 
     @FXML
     private ImageView UserImage;
@@ -148,6 +164,9 @@ public class DatingController implements Initializable {
 
     @FXML
     private TextField gradeField;
+    
+    @FXML
+    private TextField GenderField;
 
     @FXML
     private Button logout;
@@ -164,68 +183,355 @@ public class DatingController implements Initializable {
     @FXML
     private Button BtnPostIt ;
     
-    private static Profile profile ;
-    
-    private List<ActivityInformation> activities = new ArrayList<>();
-    
-    
-    
-
     @FXML
-    public void btnchangesaving(ActionEvent event) {
-
-    }
+    private Label NameLabel;
     
     @FXML
-    public void btneditprofile(ActionEvent event) {
+    private Label  UserIDLabel;
+  
+    
+    
+//    private List<ActivityInformation> activities = new ArrayList<ActivityInformation>();
+    
+//    public List<ActivityInformation> getActivities() {
+//		return activities;
+//	}
+//
+//	public void setActivities(List<ActivityInformation> activities) {
+//		this.activities = activities;
+//	}
 
+	private Database db = new Database();
+    private LoginController loginController;
+    
+    private static Profile profile;
+    
+    public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	
+	public Profile getProfile( ) {
+		return profile;
+	}
+	
+	public void setProfile(Profile p) {
+    	this.profile = p ;
     }
+
+    
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		 if (profile != null) {
-	            // Use the profile information to populate the UI elements
-	            UserNameLabel.setText(profile.getUsername());
-	        }
-		
-		PurposeChoice.getItems().addAll("純交友","找另一半","就玩玩");
-		
-		
-		List<ActivityInformation> actis = new ArrayList<>(activities);
-		
-		if(actis.size()<0) {
-			for(int i= 0; i< actis.size();i++) {
-				FXMLLoader fxmlloader = new FXMLLoader();
-				fxmlloader.setLocation(getClass().getResource("Activityitem.fxml"));
-				
-				try {
-					
-					HBox hbox = fxmlloader.load();
-					ActivityitemController ac = fxmlloader.getController();
-					ac.setData(actis.get(i));
-					
-					Layout.getChildren().add(hbox);
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+
+		   setFieldsEditable(false);
+	        btnSaveChanges.setDisable(true);
+	       
+	        
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+	        
+	    	try {
+				root = loader.load();
+				loginController = loader.getController();
+				UserNameLabel.setText(loginController.getProfile().getUsername());
+				profile = loginController.getProfile();
+				UserNameLabel.setText(profile.getUsername());
+	            NameLabel.setText(profile.getUsername());
+	            
+	            int id = db.getUserId(profile.getUsername());
+	            profile.setID(id);
+	            UserIDLabel.setText(Integer.toString(id));
+	            db.show(profile, profile.getID());
+	            updateGUIWithProfile(profile) ;
+	            PurposeChoice.getItems().addAll("純交友","找另一半","就玩玩");
+	           
+	            
+	            List<ActivityInformation> actis = new ArrayList<>( db.GetActivity());
+
+	     		Layout.getChildren().clear();
+	     		if(actis.size()>0) {
+	     			for(int i= 0; i< actis.size();i++) {
+	     				FXMLLoader fxmlloader = new FXMLLoader();
+	     				fxmlloader.setLocation(getClass().getResource("Activityitem.fxml"));
+	     				
+	     				try {
+	     					
+	     					HBox hbox = fxmlloader.load();
+	     					ActivityitemController ac = fxmlloader.getController();
+	     					ac.setData(actis.get(i));
+	     					ac.setProfile(profile);
+	     					Layout.getChildren().add(hbox);
+	     					ac.Updatewaitingperson();
+	     					
+	     				} catch (IOException e) {
+	     					// TODO Auto-generated catch block
+	     					e.printStackTrace();
+	     				}
+	     			}
+	     		}
+	  
+	            
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+	    	
+	    	
+	  
+				
+			
 		}
-	}
 	
-//	@FXML
-//	public void btneditprofile(ActionEvent event) {
-//		// TODO Autogenerated
-//		profile = new Profile();
-//		imageview = new ImageView(getClass().getResourceAsStream());
-//	}
-	@FXML
-	public void btnpasswordsaving(ActionEvent event) {
-		// TODO Autogenerated
+//更新post表單
+	
+	  @FXML
+	private void UpdateThePost(ActionEvent event) throws SQLException {
 		
+		List<ActivityInformation> actis = new ArrayList<>( db.GetActivity());
+
+ 		Layout.getChildren().clear();
+ 		if(actis.size()>0) {
+ 			for(int i= 0; i< actis.size();i++) {
+ 				FXMLLoader fxmlloader = new FXMLLoader();
+ 				fxmlloader.setLocation(getClass().getResource("Activityitem.fxml"));
+ 				
+ 				try {
+ 					
+ 					HBox hbox = fxmlloader.load();
+ 					ActivityitemController ac = fxmlloader.getController();
+ 					ac.setData(actis.get(i));
+ 					ac.setProfile(profile);
+ 					ac.Updatewaitingperson();
+ 					Layout.getChildren().add(hbox);
+ 					
+ 				} catch (IOException e) {
+ 					// TODO Auto-generated catch block
+ 					e.printStackTrace();
+ 				}
+ 			}
+ 		}
+ 			
+		
+	}
+
+    private boolean isEditMode = true;
+    private File file;
+    
+    @FXML
+    public void UploadImage(ActionEvent event) {
+    	file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            Image image = new Image(file.toURI().toString());
+            UserImage.setImage(image);
+           
+            
+            
+        }
+    	
+    	
+    	
+    }
+    
+    
+    @FXML
+    public void btnchangesaving(ActionEvent event) {
+    	
+    	 // Update the profile changes in the database
+        try 
+        {
+        	String newName = NameField.getText();
+        	int newAge = Integer.parseInt(AgeField.getText());
+        	String newIG = ContactIGField.getText();
+        	String newFB = ContactFBField.getText();
+        	String newDept = departmentField.getText();
+        	int newGrade = Integer.parseInt(gradeField.getText());
+        	String newGender = GenderField.getText();
+        	String newMBTI = MBTIField.getText();
+        	String newFavMovie = MovieField.getText();
+        	String newFavMusic = MusicField.getText();
+        	String newFavBook = BookField.getText();
+        	String newFavCelebrity = CelebrityField.getText();
+        	String newSexualPerference = SexualPerferenceField.getText();
+            boolean newNonDrinking = NonDrinkingCheck.isSelected();
+            boolean newNonSmoking = NonSmokingCheck.isSelected();
+            boolean newDrinking = DrinkingCheck.isSelected();
+            boolean newSmoking = SmokingCheck.isSelected();
+            String newPurpose = PurposeChoice.getValue();
+ 
+        	profile.setName(newName);
+        	profile.setAge(newAge);
+        	profile.setInstagram(newIG);
+        	profile.setFacebook(newFB);
+        	profile.setDepartment(newDept);
+        	profile.setGrade(newGrade);
+        	profile.setMBTI(newMBTI);
+        	profile.setMovies(newFavMovie);
+        	profile.setMusic(newFavMusic);
+        	profile.setBook(newFavBook);
+        	profile.setCelebrity(newFavCelebrity);
+        	profile.setSexualperference(newSexualPerference);
+        	profile.setPurpose(newPurpose);
+        	profile.setGender(newGender);
+        	if(file!=null) {
+        		profile.setImage(file.toURI().toString());
+        	}
+        	
+        	if(newNonDrinking) {
+        		profile.setDrinkinghabit(0);
+        	}else {
+        		profile.setDrinkinghabit(1);
+        	}
+        	
+        	if(newNonSmoking) {
+        		profile.setSmokinghabit(0);
+        	}else {
+        		profile.setSmokinghabit(1);
+        	}
+        	
+        	db.update(profile);
+        	
+        
+            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        btnSaveChanges.setDisable(true);
+        toggleEditMode();
+        setFieldsEditable(false);
+        
+        
+
+    }
+    
+    ///ADD METHOD///
+    public void updateGUIWithProfile(Profile profile) {
+    	
+    	setFieldsEditable(isEditMode);
+        btnSaveChanges.setDisable(!isEditMode);
+
+    	NameField.setText(profile.getName());
+        AgeField.setText(Integer.toString(profile.getAge()));
+        ContactIGField.setText(profile.getInstagram());
+        ContactFBField.setText(profile.getFacebook());
+        departmentField.setText(profile.getDepartment());
+        gradeField.setText(Integer.toString(profile.getGrade()));
+        MBTIField.setText(profile.getMBTI());
+        MovieField.setText(profile.getMovies());
+        MusicField.setText(profile.getMusic());
+        BookField.setText(profile.getBook());
+        CelebrityField.setText(profile.getCelebrity());
+        SexualPerferenceField.setText(profile.getSexualperference());
+        GenderField.setText(profile.getGender());
+        
+        if(profile.getImage() != null) {
+        	Image image = new Image(profile.getImage());
+            UserImage.setImage(image);
+        }
+        
+        if (profile.getDrinkinghabit() == 0) {
+            NonDrinkingCheck.setSelected(true);
+            DrinkingCheck.setSelected(false);
+        } else {
+            NonDrinkingCheck.setSelected(false);
+            DrinkingCheck.setSelected(true);
+        }
+        
+        if (profile.getSmokinghabit() == 0) {
+            NonSmokingCheck.setSelected(true);
+            SmokingCheck.setSelected(false);
+        } else {
+            NonSmokingCheck.setSelected(false);
+            SmokingCheck.setSelected(true);
+        }
+        
+
+        PurposeChoice.setValue(profile.getPurpose());
+    }
+    
+    
+    private void setFieldsEditable(boolean editable) {
+        // Set the editable property for all input fields
+    	NameField.setEditable(editable);
+        AgeField.setEditable(editable);
+        BookField.setEditable(editable);
+        CelebrityField.setEditable(editable);
+        ContactFBField.setEditable(editable);
+        ContactIGField.setEditable(editable);
+        DrinkingCheck.setDisable(!editable);
+        NonDrinkingCheck.setDisable(!editable);
+        SmokingCheck.setDisable(!editable);
+        NonSmokingCheck.setDisable(!editable);
+        MBTIField.setEditable(editable);
+        MovieField.setEditable(editable);
+        MusicField.setEditable(editable);
+        PurposeChoice.setDisable(!editable);
+        SexualPerferenceField.setEditable(editable);
+        departmentField.setEditable(editable);
+        gradeField.setEditable(editable);
+        GenderField.setEditable(editable);
+    }
+    
+    
+    @FXML
+    public void btneditprofile(ActionEvent event) {
+    	isEditMode = false;
+    	toggleEditMode();
+    }
+    
+    private void toggleEditMode() {
+        isEditMode = !isEditMode ;  //editable
+        setFieldsEditable(isEditMode);
+        btnSaveChanges.setDisable(!isEditMode);
+        
+        NameField.setEditable(isEditMode);
+        AgeField.setEditable(isEditMode);
+        MBTIField.setEditable(isEditMode);
+        departmentField.setEditable(isEditMode);
+        gradeField.setEditable(isEditMode);
+        MusicField.setEditable(isEditMode);
+        MovieField.setEditable(isEditMode);
+        BookField.setEditable(isEditMode);
+        CelebrityField.setEditable(isEditMode);
+        ContactFBField.setEditable(isEditMode);
+        ContactIGField.setEditable(isEditMode);
+        GenderField.setEditable(isEditMode);
+        
+
+        btnSaveChanges.setDisable(!isEditMode);
+    }
+	
+	
+	public Parent getRoot() {
+				return root;
+			}
+
+
+
+	public void setRoot(Parent root) {
+		this.root = root;
+	}
+
+
+
+	@FXML
+	public void btnpasswordsaving(ActionEvent event) throws SQLException {
+		// TODO Autogenerated
+		String newPassword = PasswordField.getText();
+		profile.setPassword(newPassword);
+		db.updatePassword(profile);
 		
 		
 	}
@@ -258,15 +564,42 @@ public class DatingController implements Initializable {
 		stage.show();
 	}
 	
+	
+	public Stage getStage() {
+		return stage;
+	}
+	
+	public void CreatePost() throws SQLException {
+		
+	}
+	
+	
+	
 	@FXML
-    public void SavePost(ActionEvent event) {
-
-		ActivityInformation NewPost = new ActivityInformation(PostTitleField.getText(), PostLocationField.getText(), PostDatePicker.getValue(), PostTimeField.getText(), Integer.parseInt(PostPeopleField.getText()), PostDescriptionField.getText(),profile);
-		activities.add(NewPost);
-    	//連線db 插入新的post 關db
-    	
-    	
+    public void SavePost(ActionEvent event) throws SQLException {
+		String title =PostTitleField.getText();
+		String location = PostLocationField.getText(); 
+		LocalDate date = PostDatePicker.getValue();
+		String time = PostTimeField.getText();
+		int num = Integer.parseInt(PostPeopleField.getText());
+		String description = PostDescriptionField.getText();
+		ActivityInformation NewPost = new ActivityInformation(title,location,date,time,num,description,profile);
+		NewPost.setsqlDate(date);
+		db.insert(NewPost);
+//		NewPost.setPostID(db.getPostId(title, profile.getID()));
+		//
+//		activities.add(NewPost);
+		
+		
+	
+		
+       
+		
     }
+	
+	
+}	
+
 
 	
 
@@ -295,7 +628,7 @@ public class DatingController implements Initializable {
 	
 	
 	
-}
+
 
 
 	

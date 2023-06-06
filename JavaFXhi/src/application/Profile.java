@@ -1,11 +1,12 @@
 package application;
 
 public class Profile extends User{
-	private Image image;
+	private String image;
 	private String name;
 	private String Username;
 	private String password;
 	private int age;
+	private String gender;
 	private String instagram;
 	private String facebook;
 	private String department;
@@ -15,21 +16,23 @@ public class Profile extends User{
 	private String music;
 	private String book;
 	private String celebrity;
-	private boolean drinkinghabit;
-	private boolean smokinghabit;
+	private int drinkinghabit;
+	private int smokinghabit;
 	private String sexualperference;
 	private String purpose;
+	private int ID;
 	
 	public Profile(String username, String password) {
 		this.Username = username;
 		this.password = password;
+		this.image = "file:/Users/winnie/Downloads/icon/avatar.png";
 	}
 
-	public Image getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Image image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -123,20 +126,30 @@ public class Profile extends User{
 		this.celebrity = celebrity;
 	}
 
-	public boolean isDrinkinghabit() {
+	public int getDrinkinghabit() {
 		return drinkinghabit;
 	}
 
-	public void setDrinkinghabit(boolean drinkinghabit) {
-		this.drinkinghabit = drinkinghabit;
+	public void setDrinkinghabit(int drinkinghabit) {
+		if( drinkinghabit == 1) {
+		 this.drinkinghabit = 1;
+		}
+		else {
+			this.drinkinghabit=0;
+		}
 	}
 
-	public boolean isSmokinghabit() {
+	public int getSmokinghabit() {
 		return smokinghabit;
 	}
 
-	public void setSmokinghabit(boolean smokinghabit) {
-		this.smokinghabit = smokinghabit;
+	public void setSmokinghabit(int smokinghabit) {
+		if( smokinghabit == 1) {
+			 this.smokinghabit = 1;
+			}
+			else {
+				this.smokinghabit=0;
+			}
 	}
 
 	public String getSexualperference() {
@@ -169,6 +182,22 @@ public class Profile extends User{
 
 	public void setFacebook(String facebook) {
 		this.facebook = facebook;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	
