@@ -1,6 +1,7 @@
 package application;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Activity {
@@ -9,8 +10,9 @@ public class Activity {
 	private int peoplenumbers;
 	private LocalDate date;
 	private String title;
+	private java.sql.Date sqlDate;
 	
-	public Activity(LocalDate date , String title , String description ,int num) {
+	public Activity( LocalDate date , String title , String description ,int num) {
 		
 		this.date = date;
 		this.title = title;
@@ -43,8 +45,28 @@ public class Activity {
 		return date;
 	}
 	public void setDate(LocalDate date) {
-		this.date = date;
+		// TODO Auto-generated method stub
+		this.date =date;
 	}
+	
+	public void setLocalDate(java.sql.Date sqlDate) {
+		this.date = sqlDate.toLocalDate();
+		
+	}
+	public void setsqlDate(LocalDate date) {
+		
+		if (this.date != null) {
+		    sqlDate = java.sql.Date.valueOf(this.date);
+		    // Use sqlDate when inserting into the database.
+		} else {
+		    System.out.println("Date is null");
+		}
+		
+	}
+	public java.sql.Date getsqlDate(){
+		return sqlDate;
+	}
+
 	
 
 

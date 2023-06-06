@@ -1,8 +1,249 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ShowprofileController">
+   <children>
+      <VBox prefHeight="462.0" prefWidth="709.0" spacing="10.0" styleClass="primary-color" stylesheets="@application.css">
+         <children>
+            <HBox alignment="CENTER" prefHeight="77.0" prefWidth="801.0" styleClass="secondary-color" stylesheets="@application.css">
+               <children>
+                  <Label stylesheets="@application.css" text="Profile" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="41.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="457.0" prefWidth="798.0">
+               <children>
+                  <Pane prefHeight="320.0" prefWidth="36.0" />
+                  <VBox prefHeight="322.0" prefWidth="177.0">
+                     <children>
+                        <ImageView fx:id="ShowProfileImage" fitHeight="175.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/趙喜納.jpeg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="26.0" prefWidth="179.0">
+                           <children>
+                              <Label prefHeight="27.0" prefWidth="24.0" text="IG" textFill="WHITE" />
+                              <Label fx:id="userIG" prefHeight="26.0" prefWidth="146.0" text="winnie90.h@gmail.com" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="28.0" prefWidth="176.0">
+                           <children>
+                              <Label prefHeight="27.0" prefWidth="45.0" text="FB" textFill="WHITE" />
+                              <Label fx:id="userFB" prefHeight="27.0" prefWidth="176.0" text="黃郁茜" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="327.0" prefWidth="35.0" />
+                  <VBox prefHeight="310.0" prefWidth="450.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="523.0">
+                           <children>
+                              <Label contentDisplay="TOP" prefHeight="27.0" prefWidth="91.0" stylesheets="@application.css" text="姓名：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userName" prefHeight="24.0" prefWidth="144.0" stylesheets="@application.css" text="John Cena" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="523.0">
+                           <children>
+                              <Label prefHeight="53.0" prefWidth="91.0" stylesheets="@application.css" text="科系：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userDepartment" prefHeight="29.0" prefWidth="83.0" stylesheets="@application.css" text="應數系" textFill="WHITE">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userGrade" prefHeight="28.0" prefWidth="86.0" stylesheets="@application.css" text="五年級" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="523.0">
+                           <children>
+                              <Label prefHeight="28.0" prefWidth="91.0" stylesheets="@application.css" text="性別：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userGender" contentDisplay="CENTER" prefHeight="27.0" prefWidth="91.0" stylesheets="@application.css" text="F" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="251.0" prefWidth="523.0">
+                           <children>
+                              <Label prefHeight="28.0" prefWidth="91.0" stylesheets="@application.css" text="MBTI：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userMBTI" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="ESFJ" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="131.0" prefWidth="560.0">
+                           <children>
+                              <Label alignment="TOP_LEFT" prefHeight="109.0" prefWidth="117.0" stylesheets="@application.css" text="品味興趣：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <VBox prefHeight="111.0" prefWidth="335.0">
+                                 <children>
+                                    <HBox prefHeight="48.0" prefWidth="371.0">
+                                       <children>
+                                          <Label prefHeight="45.0" prefWidth="90.0" stylesheets="@application.css" text="音樂：" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="userMusic" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="The Time is Now" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="48.0" prefWidth="322.0">
+                                       <children>
+                                          <Label prefHeight="45.0" prefWidth="90.0" stylesheets="@application.css" text="電影：" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="userMovie" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="素肚與雞琴酒" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="48.0" prefWidth="469.0">
+                                       <children>
+                                          <Label prefHeight="45.0" prefWidth="90.0" stylesheets="@application.css" text="書籍：" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="userBook" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="Elbow Grease" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="49.0" prefWidth="397.0">
+                                       <children>
+                                          <Label prefHeight="45.0" prefWidth="90.0" stylesheets="@application.css" text="明星：" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="userCelebrity" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="The Rock" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="523.0">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="126.0" stylesheets="@application.css" text="交友目的：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userPurpose" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="純交友" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="523.0">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="126.0" stylesheets="@application.css" text="菸酒習慣：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userDrinkinghabitSmokinghabit" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="不菸不酒" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="523.0">
+                           <children>
+                              <Label prefHeight="31.0" prefWidth="104.0" stylesheets="@application.css" text="性傾向：" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userSexualperference" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="異性戀" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="76.0" prefWidth="815.0" spacing="60.0">
+               <children>
+                  <Button fx:id="exit" mnemonicParsing="false" onAction="#exitToShowInfo" prefHeight="30.0" prefWidth="90.0" styleClass="editbutton" stylesheets="@application.css" text="退出" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
-

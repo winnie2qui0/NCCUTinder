@@ -1,12 +1,13 @@
 package application;
+import java.sql.SQLException;
 import java.util.*;
 
 public class User {
 	private ArrayList<String> username; 
 	private ArrayList<String> password;
 	private ArrayList<Profile> profiles;
+	private Database db = new Database();
 	private boolean valid ;
-	private Profile profile;
 	
 	
 	public User() {
@@ -16,18 +17,19 @@ public class User {
 		valid = false;
 	}
 	
-	public void add(String name, String pw) throws PasswordError, UserError{
+	public void add(String name, String pw) throws PasswordError, UserError, SQLException{
 		if (name.length() == 0) throw new UserError("Username can't be empty");
-		if (pw.length() < 8) throw new PasswordError("Password should be at least 8 letter");
+		else if (pw.length() < 8) throw new PasswordError("Password should be at least 8 letter");
+		else if (db.checkPassword(name, pw) ) {
+			throw new UserError("the user already exists");
+		}
+		else {
+			valid = true;
+			username.add(name); 
+			password.add(pw); 
+		}
 		
-		valid = true;
-		username.add(name); 
-		password.add(pw); 
-		profile = new Profile(name,pw);
-		
-		//建立profile db 加入新的profile
-		
-		
+
 		
 		return;
 	}
@@ -35,29 +37,24 @@ public class User {
 		return valid;
 	}
 	
-	public Profile getProfile(String name) {
-		Profile u = null;
-		for(Profile p: profiles) {
-			if(p.getUsername().equals(name)){
-				u = p ;
-			}
-		}
-		return u ;
-		
-		
+	public void addProfile(Profile p) {
+		profiles.add(p);
 	}
+		
 	
 	
-	public void checkUserExist(String name) throws UserError { 
-		if(username.contains(name)) return;
+	
+	public void checkUserExist(String name) throws UserError, SQLException { 
+		if(db.checkUser(name)) return;
 		throw new UserError("Can't find the user");
 		
 	}
 	
-	public void checkPassword(String name, String PW) throws PasswordError { 
-		int id = username.indexOf(name);
-		if(password.get(id).equals(PW)) return;
+	public void checkPassword(String name, String PW) throws PasswordError, SQLException { 
+		
+		if(db.checkPassword(name, PW)) return ;
 		throw new PasswordError("Password is wrong");
+	
 	} 
 	
 	
