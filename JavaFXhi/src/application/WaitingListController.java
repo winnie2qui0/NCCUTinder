@@ -20,32 +20,24 @@ public class WaitingListController {
 	private ImageView AddImage;
 	
 	private Profile profile;
-	public Profile getProfile() {
-		return profile;
-	}
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
+	
 	@FXML
 	private Button BtnWaitingProfile;
 	private Parent root;
 	private Stage stage;
+	private Scene scene;
 	
 	
-	public void SetNewGuest(String Name,String Image) {
-		
-		Image image = new Image(Image);
-		AddImage.setImage(image);
-		AddName.setText(Name);
-		
-	}
+	
+	
 	public void ShowProfileInfo(Profile p) throws IOException {
     	FXMLLoader Profileloader = new FXMLLoader(getClass().getResource("Showprofile.fxml"));
 		root = (Parent) Profileloader.load();	
 		ShowprofileController spc = Profileloader.getController();
-		spc.setProfiledate(p);
+		spc.setProfiledata(p);
+		
 		stage = new Stage();
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setTitle("NCCU Tinder");
         stage.setScene(scene);
         stage.show();
@@ -58,6 +50,18 @@ public class WaitingListController {
 		ShowProfileInfo(profile) ;
 		
 		
+	}
+	
+	public Profile getProfile() {
+		return profile;
+	}
+	
+	
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+		Image image = new Image(profile.getImage());
+		AddImage.setImage(image);
+		AddName.setText(profile.getName());
 	}
 	
 

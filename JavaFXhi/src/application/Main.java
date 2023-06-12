@@ -9,6 +9,8 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	private Database db= new Database();
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -21,6 +23,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	@Override
+    public void stop() {
+        // your application stop code
+        db.shutdownExecutorService(); // call to stop your executor service
+    }
 	
 	public static void main(String[] args) {
 		launch(args);

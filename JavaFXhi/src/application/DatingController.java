@@ -13,6 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -27,7 +28,10 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -128,7 +132,6 @@ public class DatingController implements Initializable {
     @FXML
     private CheckBox SmokingCheck;
 
-
     @FXML
     private ImageView UserImage;
 
@@ -188,20 +191,18 @@ public class DatingController implements Initializable {
     
     @FXML
     private Label  UserIDLabel;
+    
+    
+    
+
+    
+    private boolean isEditMode = true;
+    
+    private File file;
   
-    
-    
-//    private List<ActivityInformation> activities = new ArrayList<ActivityInformation>();
-    
-//    public List<ActivityInformation> getActivities() {
-//		return activities;
-//	}
-//
-//	public void setActivities(List<ActivityInformation> activities) {
-//		this.activities = activities;
-//	}
 
 	private Database db = new Database();
+	
     private LoginController loginController;
     
     private static Profile profile;
@@ -228,105 +229,97 @@ public class DatingController implements Initializable {
 
     
 	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	    
 
-		   setFieldsEditable(false);
-	        btnSaveChanges.setDisable(true);
-	       
-	        
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-	        
-	    	try {
-				root = loader.load();
-				loginController = loader.getController();
-				UserNameLabel.setText(loginController.getProfile().getUsername());
-				profile = loginController.getProfile();
-				UserNameLabel.setText(profile.getUsername());
-	            NameLabel.setText(profile.getUsername());
-	            
+	    // Move lengthy operations to another thread
+	    CompletableFuture.runAsync(() -> {
+	        try {
+	        	
+	    	    
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+	            root = loader.load();
+	            loginController = loader.getController();
+	            profile = loginController.getProfile();
+
+
+	            // Database operation
 	            int id = db.getUserId(profile.getUsername());
 	            profile.setID(id);
-	            UserIDLabel.setText(Integer.toString(id));
 	            db.show(profile, profile.getID());
-	            updateGUIWithProfile(profile) ;
-	            PurposeChoice.getItems().addAll("純交友","找另一半","就玩玩");
-	           
-	            
-	            List<ActivityInformation> actis = new ArrayList<>( db.GetActivity());
 
-	     		Layout.getChildren().clear();
-	     		if(actis.size()>0) {
-	     			for(int i= 0; i< actis.size();i++) {
-	     				FXMLLoader fxmlloader = new FXMLLoader();
-	     				fxmlloader.setLocation(getClass().getResource("Activityitem.fxml"));
-	     				
-	     				try {
-	     					
-	     					HBox hbox = fxmlloader.load();
-	     					ActivityitemController ac = fxmlloader.getController();
-	     					ac.setData(actis.get(i));
-	     					ac.setProfile(profile);
-	     					Layout.getChildren().add(hbox);
-	     					ac.Updatewaitingperson();
-	     					
-	     				} catch (IOException e) {
-	     					// TODO Auto-generated catch block
-	     					e.printStackTrace();
-	     				}
-	     			}
-	     		}
-	  
+	            // Update the UI on JavaFX Application Thread
+	            Platform.runLater(() -> {
+	                UserNameLabel.setText(profile.getUsername());
+	                NameLabel.setText(profile.getUsername());
+	                UserIDLabel.setText(Integer.toString(id));
+	                updateGUIWithProfile(profile);
+	                PurposeChoice.getItems().addAll("純交友", "找另一半", "就玩玩");
+
+	                // Rest of your code
+	                setFieldsEditable(false);
+		    	    btnSaveChanges.setDisable(true);
+	            });
 	            
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	
-	    	
+	        } catch (SQLException | IOException e) {
+	            e.printStackTrace();
+	        }
+	    });
+	}
+
 	  
 				
 			
-		}
+		
 	
-//更新post表單
+	 //把資料庫的posts撈出來 
+	public void showThePosts() {
+	    CompletableFuture<List<ActivityInformation>> actisFuture = CompletableFuture.supplyAsync(() -> {
+	        try {
+	            return new ArrayList<>(db.GetActivity());
+	        } catch (SQLException | InterruptedException | ExecutionException e) {
+	            // Handle exception...
+	            return new ArrayList<>();
+	        }
+	    });
+
+	    actisFuture.thenAccept(actis -> {
+	        Platform.runLater(() -> {
+	            Layout.getChildren().clear();
+	            if(actis.size()>0) {
+	                for(int i= 0; i< actis.size();i++) {
+	                    FXMLLoader fxmlloader = new FXMLLoader();
+	                    fxmlloader.setLocation(getClass().getResource("Activityitem.fxml"));
+
+	                    try {
+	                        HBox hbox = fxmlloader.load();
+	                        ActivityitemController ac = fxmlloader.getController();
+	                        ac.setData(actis.get(i));
+	                        ac.setProfile(profile);
+	                        ac.Updatewaitingperson();
+	                        Layout.getChildren().add(hbox);
+	                    } catch (IOException e) {
+	                        // Exception handling...
+	                    } catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	                }
+	            }
+	        });
+	    });
+	}
 	
+
+	//更新post表單
 	  @FXML
 	private void UpdateThePost(ActionEvent event) throws SQLException {
-		
-		List<ActivityInformation> actis = new ArrayList<>( db.GetActivity());
-
- 		Layout.getChildren().clear();
- 		if(actis.size()>0) {
- 			for(int i= 0; i< actis.size();i++) {
- 				FXMLLoader fxmlloader = new FXMLLoader();
- 				fxmlloader.setLocation(getClass().getResource("Activityitem.fxml"));
- 				
- 				try {
- 					
- 					HBox hbox = fxmlloader.load();
- 					ActivityitemController ac = fxmlloader.getController();
- 					ac.setData(actis.get(i));
- 					ac.setProfile(profile);
- 					ac.Updatewaitingperson();
- 					Layout.getChildren().add(hbox);
- 					
- 				} catch (IOException e) {
- 					// TODO Auto-generated catch block
- 					e.printStackTrace();
- 				}
- 			}
- 		}
- 			
-		
+		  showThePosts();
 	}
 
-    private boolean isEditMode = true;
-    private File file;
+   
     
     @FXML
     public void UploadImage(ActionEvent event) {
@@ -334,14 +327,9 @@ public class DatingController implements Initializable {
         if (file != null) {
             Image image = new Image(file.toURI().toString());
             UserImage.setImage(image);
-           
-            
-            
         }
-    	
-    	
-    	
     }
+    
     
     
     @FXML
@@ -400,9 +388,7 @@ public class DatingController implements Initializable {
         	}
         	
         	db.update(profile);
-        	
-        
-            
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -415,6 +401,7 @@ public class DatingController implements Initializable {
         
 
     }
+    
     
     ///ADD METHOD///
     public void updateGUIWithProfile(Profile profile) {
@@ -482,6 +469,8 @@ public class DatingController implements Initializable {
         departmentField.setEditable(editable);
         gradeField.setEditable(editable);
         GenderField.setEditable(editable);
+        FileButton.setDisable(!editable);
+        
     }
     
     
@@ -492,7 +481,7 @@ public class DatingController implements Initializable {
     }
     
     private void toggleEditMode() {
-        isEditMode = !isEditMode ;  //editable
+        isEditMode = true ;  //editable
         setFieldsEditable(isEditMode);
         btnSaveChanges.setDisable(!isEditMode);
         
@@ -516,7 +505,7 @@ public class DatingController implements Initializable {
 	
 	public Parent getRoot() {
 				return root;
-			}
+	}
 
 
 
@@ -532,7 +521,6 @@ public class DatingController implements Initializable {
 		String newPassword = PasswordField.getText();
 		profile.setPassword(newPassword);
 		db.updatePassword(profile);
-		
 		
 	}
 	
@@ -554,6 +542,7 @@ public class DatingController implements Initializable {
 		}
 		
 	}
+	
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
@@ -569,10 +558,6 @@ public class DatingController implements Initializable {
 		return stage;
 	}
 	
-	public void CreatePost() throws SQLException {
-		
-	}
-	
 	
 	
 	@FXML
@@ -586,14 +571,7 @@ public class DatingController implements Initializable {
 		ActivityInformation NewPost = new ActivityInformation(title,location,date,time,num,description,profile);
 		NewPost.setsqlDate(date);
 		db.insert(NewPost);
-//		NewPost.setPostID(db.getPostId(title, profile.getID()));
-		//
-//		activities.add(NewPost);
 		
-		
-	
-		
-       
 		
     }
 	

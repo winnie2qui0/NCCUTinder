@@ -48,7 +48,7 @@ public class ShowprofileController {
 	private Label userFB;
 	
 	
-	public void setProfiledate(Profile p) {
+	public void setProfiledata(Profile p) {
 		userName.setText(p.getName());
 		userDepartment.setText(p.getDepartment());
 		userGrade.setText(Integer.toString(p.getGrade()));
@@ -63,16 +63,16 @@ public class ShowprofileController {
 		
 		userCelebrity.setText(p.getCelebrity());
 		if(p.getDrinkinghabit()==1 && p.getSmokinghabit()==1){
-			userDrinkinghabitSmokinghabit.setText("會抽煙 會喝酒");
+			userDrinkinghabitSmokinghabit.setText("會喝酒 會抽煙");
 		}
 		else if(p.getDrinkinghabit()==0 && p.getSmokinghabit()==1) {
-			userDrinkinghabitSmokinghabit.setText("不會抽煙 會喝酒");
+			userDrinkinghabitSmokinghabit.setText("不會喝酒 會抽煙");
 		}
 		else if(p.getDrinkinghabit()==1 && p.getSmokinghabit()==0) {
-			userDrinkinghabitSmokinghabit.setText("會抽煙 不會喝酒");
+			userDrinkinghabitSmokinghabit.setText("會喝酒 不會抽煙");
 		}
 		else {
-			userDrinkinghabitSmokinghabit.setText("不會抽煙 不會喝酒");
+			userDrinkinghabitSmokinghabit.setText("不會喝酒 不會抽煙");
 		}
 		
 		userSexualperference.setText(p.getSexualperference());
