@@ -85,3 +85,8 @@
   -fx-background-color: #243662;
   -fx-color: white;
 }
+
+.addbutton{
+	-fx-background-color : transparent;
+	-fx-background-radius : 50 ;
+}

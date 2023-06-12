@@ -22,7 +22,7 @@
                      <children>
                         <Label prefHeight="62.0" prefWidth="140.0" text="UserName:" textFill="WHITE">
                            <font>
-                              <Font name="Arial" size="24.0" />
+                              <Font name="Toppan Bunkyu Midashi Gothic Extrabold" size="24.0" />
                            </font>
                         </Label>
                         <Pane prefHeight="75.0" prefWidth="29.0" />
@@ -37,7 +37,7 @@
                      <children>
                         <Label prefHeight="62.0" prefWidth="140.0" text="Password:" textFill="WHITE">
                            <font>
-                              <Font name="Arial" size="25.0" />
+                              <Font name="Toppan Bunkyu Midashi Gothic Extrabold" size="24.0" />
                            </font>
                         </Label>
                         <Pane prefHeight="75.0" prefWidth="29.0" />
@@ -50,9 +50,9 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="72.0" prefWidth="1110.0" spacing="50.0">
                      <children>
-                        <Button fx:id="btnSingup" mnemonicParsing="false" onAction="#btnEnrolled" prefHeight="71.0" prefWidth="168.0" stylesheets="@application.css" text="Sign up" textFill="WHITE">
+                        <Button fx:id="btnSingup" mnemonicParsing="false" onAction="#btnEnrolled" prefHeight="54.0" prefWidth="127.0" stylesheets="@application.css" text="Sign up" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="29.0" />
+                              <Font name="BM HANNA Pro OTF" size="25.0" />
                            </font>
                            <styleClass>
                               <String fx:value="loginselectedbutton" />
@@ -60,9 +60,9 @@
                               <String fx:value="editbutton" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLogin" prefHeight="69.0" prefWidth="178.0" stylesheets="@application.css" text="Log in" textFill="WHITE">
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLogin" prefHeight="54.0" prefWidth="127.0" stylesheets="@application.css" text="Log in" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="29.0" />
+                              <Font name="BM HANNA 11yrs old OTF" size="25.0" />
                            </font>
                            <styleClass>
                               <String fx:value="loginselectedbutton" />
@@ -87,9 +87,9 @@
    <top>
       <VBox alignment="CENTER" prefHeight="138.0" prefWidth="1220.0" styleClass="primary-color" stylesheets="@application.css" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="141.0" prefWidth="524.0" stylesheets="@application.css" text="Welcome to NCCU Tinder" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="136.0" prefWidth="764.0" stylesheets="@application.css" text="Welcome to NCCU Tinder" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="42.0" />
+                  <Font name="HanziPen SC Regular" size="72.0" />
                </font>
             </Label>
          </children>

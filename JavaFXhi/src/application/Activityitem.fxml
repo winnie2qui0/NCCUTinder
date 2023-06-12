@@ -1,55 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityitemController">
+<HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityitemController">
    <children>
-      <Label fx:id="date" alignment="CENTER" prefHeight="46.0" prefWidth="196.0" text="2023-05-22">
+      <Label fx:id="date" alignment="CENTER" prefHeight="51.0" prefWidth="159.0" text="2023-05-22">
          <font>
-            <Font size="22.0" />
+            <Font name="Noto Sans Oriya" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="title" alignment="CENTER" prefHeight="51.0" prefWidth="184.0" text="指南宮爬山">
+      <Label fx:id="title" prefHeight="49.0" prefWidth="177.0" text="指南宮爬山">
          <font>
-            <Font size="22.0" />
+            <Font name="YuGothic Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="description" alignment="CENTER" prefHeight="50.0" prefWidth="243.0" text="尋找一起登山的朋友">
+      <Label fx:id="description" prefHeight="50.0" prefWidth="217.0" text="尋找一起登山的朋友">
          <font>
-            <Font size="22.0" />
+            <Font size="19.0" />
          </font>
       </Label>
-      <Label fx:id="peoplenumbers" alignment="CENTER" prefHeight="51.0" prefWidth="117.0" text="3">
+      <Label fx:id="peoplenumbers" alignment="CENTER" prefHeight="52.0" prefWidth="110.0" text="3">
          <font>
-            <Font size="22.0" />
+            <Font name="Noto Sans Oriya" size="20.0" />
          </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
       </Label>
-      <Label alignment="CENTER" prefHeight="52.0" prefWidth="77.0">
-         <font>
-            <Font size="22.0" />
-         </font>
+      <Button fx:id="addbutton" mnemonicParsing="false" onAction="#AddinList" styleClass="addbutton" stylesheets="@application.css">
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView accessibleRole="BUTTON" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#AddinList" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../Downloads/add.png" />
                </image>
             </ImageView>
          </graphic>
-      </Label>
+      </Button>
       <Label alignment="CENTER" prefHeight="54.0" prefWidth="124.0">
          <font>
             <Font size="18.0" />
          </font>
          <graphic>
-            <Button fx:id="Btndetial" mnemonicParsing="false" onAction="#ShowActivityDetail" prefHeight="43.0" prefWidth="72.0" text="details">
+            <Button fx:id="Btndetial" mnemonicParsing="false" onAction="#ShowActivityDetail" prefHeight="31.0" prefWidth="71.0" styleClass="editbutton" stylesheets="@application.css" text="details" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="15.0" />
+                  <Font name="Raanana" size="15.0" />
                </font>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
             </Button>
          </graphic>
       </Label>

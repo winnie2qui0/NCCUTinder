@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="125.0" prefWidth="119.0" styleClass="Roundbutton" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WaitingListController">
+<AnchorPane prefHeight="119.0" prefWidth="122.0" styleClass="Roundbutton" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WaitingListController">
    <children>
-      <VBox prefHeight="142.0" prefWidth="135.0">
+      <VBox prefHeight="119.0" prefWidth="135.0">
          <children>
             <Button fx:id="BtnWaitingProfile" mnemonicParsing="false" onAction="#showWaitingProfile" prefHeight="104.0" prefWidth="144.0" styleClass="Roundbutton" stylesheets="@application.css">
                <graphic>
@@ -23,7 +23,7 @@
             </Button>
             <Label fx:id="AddName" alignment="TOP_CENTER" prefHeight="20.0" prefWidth="147.0" text="Jason" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Wawati TC Regular" size="18.0" />
                </font>
             </Label>
          </children>

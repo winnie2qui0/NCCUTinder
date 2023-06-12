@@ -10,13 +10,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import javax.swing.JFrame;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.control.Label;
 
 public class Database {
 	
 		
-	  
 	private int hostId = -1;
 	private String server ;
 	private String database;
@@ -27,14 +34,14 @@ public class Database {
 	private PreparedStatement stat;
 	
 	public Database() {
-		this.server = "jdbc:mysql://140.119.19.73:3315/";
+		
+		this.server = "jdbc:mysql://localhost:3306/";
 		this.database = "110306092"; // change to your own database
-		this.url = server + database + "?useSSL=false";
-		this.username = "110306092"; // change to your own username
-		this.password = "4azcv"; // change to your own password
+		this.url = server + database;
+		this.username = "root"; // change to your own username
+		this.password = "winnie901206"; // change to your own password
 		
 		
-
 	}
 	
 
@@ -43,8 +50,8 @@ public class Database {
 		String query = "UPDATE Profile SET Image=?, Name=?, Age=?, Instagram=?, Facebook=?, Dep=?, Grade=?, MBTI=?, Movie=?,"
 				+ " Music=?, Book=?, Celebrity=?, Drinking=?,Smoking=?, SexualOrientation=?, Purpose=?, Gender =? WHERE UserName=?";
 		
-		try(Connection conn = DriverManager.getConnection(url, username, password);
-	            PreparedStatement stat = conn.prepareStatement(query)) 
+		try(     Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query)) 
 		{
 			stat.setObject(1, profile.getImage());
 			stat.setString(2, profile.getName());
@@ -66,39 +73,34 @@ public class Database {
 			stat.setString(18, profile.getUsername());
 			
 			stat.executeUpdate();
+			stat.close();
+	        conn.close();
+	      
 			
 		} catch (SQLException e) {
 	        e.printStackTrace();
-		} finally {
-			if (stat != null) {
-	    		stat.close();
-	    	}
-			if(conn != null) {
-	        	conn.close();
-	        }
-	    }
+		} 
+	    
 	}
 	//Update Password
 		public void updatePassword(Profile profile)throws SQLException {
 			String query = "UPDATE Profile SET Password= ? WHERE ID=?";
 			
-			try(Connection conn = DriverManager.getConnection(url, username, password);
-		            PreparedStatement stat = conn.prepareStatement(query)) 
+			try( 
+		           Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query)) 
 			{
 				stat.setString(1, profile.getPassword());
 				stat.setInt(2, profile.getID());
 				stat.executeUpdate();
 				
+
+				stat.close();
+				conn.close();
+		         
 			} catch (SQLException e) {
 		        e.printStackTrace();
-			} finally {
-				if (stat != null) {
-		    		stat.close();
-		    	}
-				if(conn != null) {
-		        	conn.close();
-		        }
-		    }
+			} 
 		}
 
 
@@ -106,7 +108,7 @@ public class Database {
 		 public void insertProfile(Profile profile) {
 		        String sql = "INSERT INTO Profile(Image, Name, UserName, Password, Age, Instagram, Facebook, Dep, Grade, MBTI, Movie, Music, Book, Celebrity, Drinking, Smoking, SexualOrientation, Purpose, Gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
-		        try (Connection conn = DriverManager.getConnection(url, username, password);
+		        try (  Connection conn = DriverManager.getConnection(url, username, password);
 		            PreparedStatement ps = conn.prepareStatement(sql)) 
 		        {
 
@@ -132,7 +134,9 @@ public class Database {
 		            ps.setString(18, profile.getPurpose());
 		            ps.setString(19, profile.getGender());
 		            ps.executeUpdate();
-
+		            
+		            ps.close();
+		            conn.close();
 		        } catch (SQLException e) {
 		            e.printStackTrace();
 		        }
@@ -142,7 +146,7 @@ public class Database {
 	public boolean checkUser(String name)throws SQLException  {
 		   String sql = "SELECT UserName, is_enrolled FROM Profile WHERE UserName = ?";
 		   boolean userexit = false;
-	        try (Connection conn = DriverManager.getConnection(url, username, password);
+	        try (  Connection conn = DriverManager.getConnection(url, username, password);
 	            PreparedStatement stat = conn.prepareStatement(sql)) 
 	        {
 	        	stat.setString(1, name);
@@ -165,17 +169,12 @@ public class Database {
 	            }
 	        	
 	            resultSet.close();
+	            stat.close();
+	        conn.close();
+		         
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        }finally {
-	        	if (stat != null) {
-		    		stat.close();
-		    	}
-				if(conn != null) {
-		        	conn.close();
-		        	
-		        }
-		    }
+	        }
 	        return userexit;
 	      
 	        
@@ -189,7 +188,7 @@ public class Database {
 		   
 //	       
 		   
-		   try( Connection conn = DriverManager.getConnection(url, username, password);
+		   try(   Connection conn = DriverManager.getConnection(url, username, password);
 	           PreparedStatement ps = conn.prepareStatement(sql)
 	        		 
 			){
@@ -216,18 +215,12 @@ public class Database {
 	            
 	            resultSet.close(); // Close the result set
 	            ps.close();
-	        	
+	            
+		         
 	        	
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        }finally {
-	        	if (stat != null) {
-		    		stat.close();
-		    	}
-				if(conn != null) {
-		        	conn.close();
-		        }
-		    }
+	        }
 	        return rightpassword;
 	        
 		
@@ -239,8 +232,9 @@ public class Database {
 			String query = "INSERT INTO Post (Description, Peoplenumber, Date, Time, ProfileID, Title ,Location) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-			 try (Connection conn = DriverManager.getConnection(url, username, password);
-			      PreparedStatement stat = conn.prepareStatement(query))  {
+			 try ( 
+			     Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query))  {
 		    	stat.setString(1, activity.getDescription());
 		        stat.setInt(2, activity.getPeoplenumbers());
 		        stat.setDate(3, activity.getsqlDate());
@@ -258,26 +252,22 @@ public class Database {
 		        stat.executeUpdate();
 		        
 		        
-		        
+		        stat.close();
+	        conn.close();
+		         
 		        		
 		    } catch (SQLException e) {
 		        e.printStackTrace();
-		    } finally {
-		    	if (stat != null) {
-		    		stat.close();
-		    	}
-				if(conn != null) {
-		        	conn.close();
-		        }
-		    }
+		    } 
 		}
 	
 	public int getPostId(String title, int hostID) throws SQLException {
 	     // initializing with a non-valid value
 	    String query = "SELECT PostID FROM Post WHERE Title = ? AND ProfileID = ? ";
 	    int postId=0;
-	    try(Connection conn = DriverManager.getConnection(url, username, password);
-	        PreparedStatement stat = conn.prepareStatement(query)) 
+	    try( 
+	       Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query)) 
 	    {
 	        stat.setString(1, title);
 	        stat.setInt(2, hostID);
@@ -288,17 +278,13 @@ public class Database {
 	        }
 	        
 	        rs.close();
+	        stat.close();
+	        conn.close();
+	         
+	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    }finally {
-	    	if (stat != null) {
-	    		stat.close();
-	    	}
-			if(conn != null) {
-	        	conn.close();
-	        }
-			
-         }
+	    }
 	
 	    
 	    return postId;
@@ -310,8 +296,9 @@ public class Database {
 	     // initializing with a non-valid value
 	    String query = "SELECT ID FROM Profile WHERE UserName = ?";
 	    int UserId=0;
-	    try(Connection conn = DriverManager.getConnection(url, username, password);
-	            PreparedStatement stat = conn.prepareStatement(query)) 
+	    try( 
+	           Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query)) 
 	    {
 	        stat.setString(1, name);
 	        
@@ -320,162 +307,153 @@ public class Database {
 	        	 UserId = rs.getInt("ID");
 	        }
 	        rs.close();
+	        stat.close();
+	        conn.close();
+	         
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    }finally {
-	    	if (stat != null) {
-	    		stat.close();
-	    	}
-			if(conn != null) {
-	        	conn.close();
-	        }
 	    }
 	    
 	    return UserId;
 	}
+	
 	//使用者退出貼文
 	public void removeFromWaitingList(int postId, int profileId) throws SQLException {
 	    String query = "DELETE FROM WaitingList WHERE postId = ? AND profileId = ?";
 
-	    try (Connection conn = DriverManager.getConnection(url, username, password);
-	         PreparedStatement stat = conn.prepareStatement(query))  {
+	    try ( 
+	        Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query))  {
 
 	        stat.setInt(1, postId);
 	        stat.setInt(2, profileId);
 
 	        stat.executeUpdate();
+	        stat.close();
+	        conn.close();
+	         
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    }finally {
-	    	if (stat != null) {
-	            
-				stat.close();
-			
-         }if(conn != null) {
-	        	conn.close();
-	        }
 	    }
 	}
+	
+	public boolean doesProfileExist(int profileId, int postid) throws SQLException {
+	    String query = "SELECT 1 FROM WaitingList WHERE profileid = ? AND postid = ?";
+
+	    try ( 
+	        Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query))  {
+
+	        stat.setInt(1, profileId);
+	        stat.setInt(2, postid);
+
+	        ResultSet rs = stat.executeQuery();
+
+	        boolean exists = rs.next();  // will return true if there's a result
+
+	        rs.close();
+	        stat.close();
+	        conn.close();
+	         
+
+	        return exists;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return false;  // fallback return in case of exception
+	}
+
 
 	//使用者加入貼文
 	public void addToWaitingList(int postId, int profileId) throws SQLException {
 	    String query = "INSERT INTO WaitingList (postId, profileId) VALUES (?, ?)";
 
-	    try (Connection conn = DriverManager.getConnection(url, username, password);
-	         PreparedStatement stat = conn.prepareStatement(query))  {
+	    try ( 
+	        Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query))  {
 
 	        stat.setInt(1, postId);
 	        stat.setInt(2, profileId);
 
 	        stat.executeUpdate();
+	        stat.close();
+	        conn.close();
+	         
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    }finally {
-	    	 if (stat != null) {
-	            
-					stat.close();
-				
-	         }if(conn != null) {
-		        	conn.close();
-		        }
 	    }
 	}
 	
 	//從貼文中撈出正在等待的使用者
-	public List<Profile> getWaitingList(int postId) throws SQLException {
-	    List<Profile> waitingList = new ArrayList<>();
+	public Task<List<Profile>> getWaitingList(int postId) {
+	    Task<List<Profile>> task = new Task<List<Profile>>() {
+	        @Override
+	        protected List<Profile> call() throws Exception {
+	            List<Profile> waitingList = new ArrayList<>();
+	            String query = "SELECT Profile.ID FROM Profile " +
+	                    "JOIN WaitingList ON Profile.ID = WaitingList.profileId " +
+	                    "WHERE WaitingList.postId = ?";
+	            try (
+	                    Connection conn = DriverManager.getConnection(url, username, password);
+	                    PreparedStatement stat = conn.prepareStatement(query)) {
 
-	    String query = "SELECT Profile.* FROM Profile " +
-	        "JOIN WaitingList ON Profile.ID = WaitingList.profileId " +
-	        "WHERE WaitingList.postId = ?";
+	                stat.setInt(1, postId);
 
-	    try (Connection conn = DriverManager.getConnection(url, username, password);
-	         PreparedStatement stat = conn.prepareStatement(query))  {
+	                ResultSet rs = stat.executeQuery();
 
-	        stat.setInt(1, postId);
-
-	        ResultSet rs = stat.executeQuery();
-
-	        while(rs.next()) {
-	            Profile profile = getProfile(rs.getInt("ID"));// create a profile from the result set
-	      
-	            waitingList.add(profile);
+	                while (rs.next()) {
+	                    Profile profile = getProfile(rs.getInt("ID")); // create a profile from the result set
+	                    waitingList.add(profile);
+	                }
+	                rs.close();
+	                stat.close();
+	                conn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	            return waitingList;
 	        }
-	        rs.close();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }finally {
-	    	 if (stat != null) {
-	             stat.close();
-	         }if(conn != null) {
-		        	conn.close();
-		        }
-	    }
-
-	    return waitingList;
+	    };
+	    new Thread(task).start();
+	    return task;
 	}
 
-
 	
-	//Delete Profile
-	//判斷條件：用戶名稱
-	public void delete(String userName)throws SQLException{
-			String query = "DELETE FROM profile WHERE username = ?";
-			
-		    try (Connection conn = DriverManager.getConnection(url, username, password);
-				PreparedStatement stat = conn.prepareStatement(query))
-					
-		    	{
-
-		    	stat.setString(1, username);
-		        stat.executeUpdate();
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    } finally {
-		    	 if (stat != null) {
-		             stat.close();
-		         }if(conn != null) {
-			        	conn.close();
-			        }
-		    }
-		}
+	
 
 	//Delete Post
 	//判斷條件：POST ID
 		public void deletePost(int postid) throws SQLException {
 		    String query = "DELETE FROM Post WHERE PostID = ?";
 
-		    try {
-		    	Connection conn = DriverManager.getConnection(url, username, password);
-		        stat = conn.prepareStatement(query);
+		    try ( Connection conn = DriverManager.getConnection(url, username, password);
+                    PreparedStatement stat = conn.prepareStatement(query))
+		    {
 		        
 		        stat.setInt(1,postid );
-
 		        stat.executeUpdate();
+		        
+		        stat.close();
+	        conn.close();
+		         
 		    } catch (SQLException e) {
 		        e.printStackTrace();
-		    } finally {
-		        if (stat != null) {
-		            stat.close();
-		        }
-		        if (conn != null) {
-		            conn.close();
-		        }
-		       
 		    }
 		}
 
-	
+	ExecutorService executorService = Executors.newFixedThreadPool(10); 
 	
 	//Get Profile
 	public Profile getProfile(int ProfileID) throws SQLException {
+		Future<Profile> future = executorService.submit(() -> {
 		String query = "SELECT * FROM Profile WHERE ID=?";
 		
 		Profile profile = new Profile(null,null);
-		try(Connection conn = DriverManager.getConnection(url, username, password);
-	       PreparedStatement stat = conn.prepareStatement(query)) 
+		try( 
+	      Connection conn = DriverManager.getConnection(url, username, password);
+		  PreparedStatement stat = conn.prepareStatement(query)) 
 		{	
 			stat.setInt(1, ProfileID);
 		
@@ -506,34 +484,34 @@ public class Database {
 			
 			
 	        rs.close();
+	        stat.close();
+	        conn.close();
+	         
 		
-		} catch (SQLException e) {
+	     } 
+        return profile;
+    });
+		try {
+	        return future.get(); // This will wait until the task is done and then return the result
+	    } catch (InterruptedException | ExecutionException e) {
 	        e.printStackTrace();
-		} finally {
-			 if (stat != null) {
-		            stat.close();
-		        }
-			 if(conn != null) {
-		        	conn.close();
-		        }
 	    }
+
+	    return null;
+	
 		
-		return profile;
 }
 		
-		
-		
-		
-		
-	
-	
+
+
 	
 	//Show Profile
 		public void show(Profile profile, int userid)throws SQLException {
 			String query = "SELECT* FROM Profile WHERE ID=?";
 			
-			try(Connection conn =  DriverManager.getConnection(url, username, password);
-		            PreparedStatement stat = conn.prepareStatement(query)) 
+			try(Connection conn = DriverManager.getConnection(url, username, password);
+		           
+				PreparedStatement stat = conn.prepareStatement(query)) 
 			{
 				stat.setInt(1, userid);
 				
@@ -561,27 +539,25 @@ public class Database {
 		        	
 		        }
 		        rs.close();
+		        stat.close();
+	        conn.close();
+		         
 				
 			} catch (SQLException e) {
 		        e.printStackTrace();
-			} finally {
-				 if (stat != null) {
-			            stat.close();
-			        }
-				 if(conn != null) {
-			        	conn.close();
-			        }
-		    }
+			} 
 		}
 	
 
 	//Select ActivityInformation
-	public List<ActivityInformation> GetActivity() throws SQLException {
+	public List<ActivityInformation> GetActivity() throws SQLException, InterruptedException, ExecutionException {
+		 Future<List<ActivityInformation>> future = executorService.submit(() -> {
 	    List<ActivityInformation> activities = new ArrayList<>();
-	    String query = "SELECT * FROM Post ORDER BY date DESC";
+	    String query = "SELECT * FROM Post ORDER BY date ";
 
-	    try(Connection conn =  DriverManager.getConnection(url, username, password);
-        PreparedStatement stat = conn.prepareStatement(query))  {
+	    try(
+               Connection conn = DriverManager.getConnection(url, username, password);
+				PreparedStatement stat = conn.prepareStatement(query))  {
 	        
 	        ResultSet resultSet = stat.executeQuery();
 
@@ -600,17 +576,20 @@ public class Database {
 	            activities.add(activity);
 	        }
 	        resultSet.close();
+	        stat.close();
+	        conn.close();
+	         
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    } finally {
-	        if (stat != null) {
-	            stat.close();
-	        }
-	        if(conn != null) {
-	        	conn.close();
-	        }
-	    }
+	    } 
 	    return activities;
+		 });
+
+		    return future.get();
+	}
+	
+	public void shutdownExecutorService() {
+	    executorService.shutdown();
 	}
 
 	public String getServer() {

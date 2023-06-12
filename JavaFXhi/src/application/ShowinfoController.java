@@ -7,10 +7,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -77,7 +80,9 @@ public class ShowinfoController implements Initializable{
     
     private int limit=0;
     
+    private DatingController dc;
     
+    private Profile Userprofile;
     @FXML
     private ImageView HostImage;
 
@@ -90,10 +95,22 @@ public class ShowinfoController implements Initializable{
     private Database db = new Database();
     
     private List<Profile> waiting = new ArrayList<>();
+
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Dating.fxml"));
+    	try {
+			root = fxmlloader.load();
+			dc = fxmlloader.getController();
+			Userprofile = dc.getProfile();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
 	
 		
 	}
@@ -108,7 +125,7 @@ public class ShowinfoController implements Initializable{
     	FXMLLoader Profileloader = new FXMLLoader(getClass().getResource("Showprofile.fxml"));
 		root = (Parent) Profileloader.load();	
 		ShowprofileController spc = Profileloader.getController();
-		spc.setProfiledate(p);
+		spc.setProfiledata(p);
 		stage = new Stage();
 		Scene scene = new Scene(root);
 		stage.setTitle("NCCU Tinder");
@@ -132,7 +149,8 @@ public class ShowinfoController implements Initializable{
     }
     
     public void SetDetailData(ActivityInformation info) throws IOException, SQLException {
-    	this.post = info;
+    	
+    	updatewaitingList(info);
     	this.host = db.getProfile(info.getHostID());
     	System.out.print(info.getHostID());
     	ShowTitleLabel.setText(info.getTitle());
@@ -148,115 +166,57 @@ public class ShowinfoController implements Initializable{
         	HostImage.setImage(hostimage);
     	}
     	
-    	post.setPostID(db.getPostId(info.getTitle(), info.getHostID()));
-    	System.out.printf("this is test of adding list has correct post id and profileid, postid :"+info.getPostID());
+    	info.setPostID(db.getPostId(info.getTitle(), info.getHostID()));
+    	this.post = info;
     	
-    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Dating.fxml"));
-    	root = fxmlloader.load();
-    	DatingController dc = fxmlloader.getController();
-    	if( post.getHostID() == dc.getProfile().getID()) {
+    	if( post.getHostID() == Userprofile.getID()) {
     		BtnDelete.setVisible(true);
     		
     	}
-    	
-    	
-		waiting = db.getWaitingList(post.getPostID());
-    	
-    	
-    	//顯示目前加入人數
-		this.Joinperson = waiting.size();
-    	currentnumber =info.getPeoplenumbers();
-    	
-    	ShowIntegerLabel.setText(String.format("%d / %d",  Joinperson,currentnumber));
-    
-    	
-    	List<Profile> profiles = new ArrayList<>(waiting);
-		Layout.getChildren().clear();
-		if(profiles.size()>0) {
-			for(int i= 0; i< profiles.size();i++) {
-				FXMLLoader profileloader = new FXMLLoader();
-				profileloader.setLocation(getClass().getResource("WaitingList.fxml"));
-				
-				try {
-					AnchorPane waitp = profileloader.load();
-					WaitingListController ac = profileloader.getController();
-					ac.ShowProfileInfo(profiles.get(i));
-					ac.SetNewGuest(profiles.get(i).getName(), profiles.get(i).getImage());
-					Layout.getChildren().add(waitp);
-					
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        	
-    			}
-    	}
+    	Updatewaitingperson();
     	
 		
 	}
-   
+    public void Updatewaitingperson() {
+	    Task<List<Profile>> waitingTask = db.getWaitingList(post.getPostID());
+	    waitingTask.setOnSucceeded(e -> {
+	        waiting = waitingTask.getValue();
+	        Joinperson = waiting.size();
+	        currentnumber = post.getPeoplenumbers();
+	        ShowIntegerLabel.setText(String.format("%d / %d", Joinperson, currentnumber));
+	    });
+	    new Thread(waitingTask).start();
+	}
+    
+   public void adding(ActivityInformation post, Profile Userprofile) throws SQLException, Error {
+	   if( post.getHostID() == Userprofile.getID()) {
+   		throw new Error("你不能加入自己的貼文");
+   		
+	   	}
+	
+	   	if (Joinperson == currentnumber) {
+	   	    throw new Error("加入人數已滿");
+	   	}
+	   	
+	   	if (db.doesProfileExist(Userprofile.getID(),post.getPostID())) {
+	   		throw new Error("你已加入此活動");
+	   	}
+	   	
+	   	db.addToWaitingList(post.getPostID(), Userprofile.getID());
+	   	Updatewaitingperson() ;
+	   	
+	   
+   }
 
    
     //加入成為等待成員
     @FXML
     public void AddinWaitingList(ActionEvent event) throws IOException, SQLException {
     	try {
-    		FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Dating.fxml"));
-        	root = fxmlloader.load();
-        	DatingController dc = fxmlloader.getController();
-        	if( post.getHostID() == dc.getProfile().getID()) {
-        		throw new Error("你不能加入自己的貼文");
-        		
-        	}
-        	
-        	if (limit == 1) {
-        	    throw new Error("你已加入此活動");
-        	}
-
-        	if (Joinperson == currentnumber) {
-        	    throw new Error("加入人數已滿");
-        	}
-        	
-        	waiting = db.getWaitingList(post.getPostID());
-        	if(waiting.contains(dc.getProfile().getID())) {
-        		throw new Error("你已加入此活動");
-        	}
-
-        	db.addToWaitingList(post.getPostID(), dc.getProfile().getID());
-        	Joinperson++;
-        	limit++;
-        	ShowIntegerLabel.setText(String.format("%d/%d", Joinperson, currentnumber));
-        	waiting = db.getWaitingList(post.getPostID());
-        	List<Profile> profiles = new ArrayList<>(waiting);
-        	
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("Activityitem.fxml"));
-        	root = loader.load();
-        	ActivityitemController ac = loader.getController();
-        	ac.setData(post);
-        	ac.Updatewaitingperson();
-        	
-    		Layout.getChildren().clear();
-    		if(profiles.size()>0) {
-    			for(int i= 0; i< profiles.size();i++) {
-    				FXMLLoader profileloader = new FXMLLoader();
-    				profileloader.setLocation(getClass().getResource("WaitingList.fxml"));
-    				
-    				try {
-    					AnchorPane waitp = profileloader.load();
-    					WaitingListController wc = profileloader.getController();
-    					wc.SetNewGuest(profiles.get(i).getName(), profiles.get(i).getImage());
-    					Layout.getChildren().add(waitp);
-    					
-    					
-    				} catch (IOException e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				}
-        	
-    			}
     		
-    		}
+    		adding(post,Userprofile) ;
+    		updatewaitingList(post) ;
+    		
     	}catch (Error  e) {
 			// TODO Auto-generated catch block
 			Alert alert = new Alert(AlertType.ERROR);
@@ -266,65 +226,59 @@ public class ShowinfoController implements Initializable{
 		}
 
     }
-    //退出貼文
+    
+    //退出貼文將使用者從等待名單中刪除
     @FXML
     public void QuitPost(ActionEvent event) throws IOException, SQLException {
-    	
-    	
-    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Dating.fxml"));
-    	root = fxmlloader.load();
-    	DatingController dc = fxmlloader.getController();
-    	waiting = db.getWaitingList(post.getPostID());
-    	if(!waiting.contains(dc.getProfile())) {
-    		throw new Error("你不在等待名單中 無法退出");
-    	}
-    	
-		db.removeFromWaitingList(post.getPostID(), dc.getProfile().getID());
-		Joinperson--;
-		limit--;
-		ShowIntegerLabel.setText(String.format("%d / %d", Joinperson, currentnumber));
-		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Activityitem.fxml"));
-    	root = loader.load();
-    	ActivityitemController ac = loader.getController();
-    	ac.setData(post);
-    	ac.Updatewaitingperson();
-    	
-		waiting = db.getWaitingList(post.getPostID());
-    	List<Profile> profiles = new ArrayList<>(waiting);
-    	Layout.getChildren().clear();
-		if(profiles.size()>0) {
-			for(int i= 0; i< profiles.size();i++) {
-				FXMLLoader profileloader = new FXMLLoader();
-				profileloader.setLocation(getClass().getResource("WaitingList.fxml"));
-				
-				try {
-					AnchorPane waitp = profileloader.load();
-					WaitingListController wc = profileloader.getController();
-					wc.SetNewGuest(profiles.get(i).getName(), profiles.get(i).getImage());
-					Layout.getChildren().add(waitp);
-					
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}catch (Error  e) {
-					// TODO Auto-generated catch block
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error");
-					alert.setContentText(e.getMessage());
-					alert.showAndWait();
-				}
-    	
+
+    	try{
+    		
+	    	
+	    	if(!db.doesProfileExist(Userprofile.getID(),post.getPostID())) {
+	    		throw new Error("你不在等待名單中 無法退出");
+	    	}
+	    	
+			db.removeFromWaitingList(post.getPostID(), Userprofile.getID());
+			Updatewaitingperson() ;
+			updatewaitingList(post) ;
+			
+			
+	    }catch (Error  e) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setContentText(e.getMessage());
+				alert.showAndWait();
 			}
 		}
-		else {
-			Layout.getChildren().clear();
-		}
-	}
-    	
+	    	
     
-    
+    public void updatewaitingList(ActivityInformation post) {
+        Task<List<Profile>> waitingTask = db.getWaitingList(post.getPostID());
+        waitingTask.setOnSucceeded(e -> {
+            waiting = waitingTask.getValue();
+            List<Profile> profiles = new ArrayList<>(waiting);
+            Layout.getChildren().clear();
+            if (profiles.size() > 0) {
+                for (int i = 0; i < profiles.size(); i++) {
+                    FXMLLoader profileloader = new FXMLLoader();
+                    profileloader.setLocation(getClass().getResource("WaitingList.fxml"));
+                    try {
+                        AnchorPane waitp = profileloader.load();
+                        WaitingListController wc = profileloader.getController();
+                        wc.setProfile(profiles.get(i));
+                        Layout.getChildren().add(waitp);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
+            } else {
+                Layout.getChildren().clear();
+            }
+        });
+    }
+
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
