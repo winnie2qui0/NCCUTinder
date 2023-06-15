@@ -159,88 +159,6 @@
    <center>
       <StackPane prefHeight="768.0" prefWidth="878.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="datingpage" prefHeight="747.0" prefWidth="902.0" stylesheets="@application.css" StackPane.alignment="CENTER">
-               <styleClass>
-                  <String fx:value="primary-color" />
-                  <String fx:value="secondary-color" />
-               </styleClass>
-               <children>
-                  <VBox alignment="CENTER" layoutX="12.0" layoutY="6.0" prefHeight="754.0" prefWidth="883.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="99.0" prefWidth="168.0" text="Dating" textFill="WHITE">
-                                 <font>
-                                    <Font name="BM KIRANGHAERANG OTF" size="50.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets left="20.0" />
-                                 </padding>
-                              </Label>
-                              <Button fx:id="BtnUpdate" mnemonicParsing="false" onAction="#UpdateThePost" styleClass="editbutton" stylesheets="@application.css" text="update" textFill="WHITE">
-                                 <font>
-                                    <Font name="Avenir Next Condensed Bold" size="19.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <AnchorPane prefHeight="657.0" prefWidth="876.0">
-                           <children>
-                              <VBox prefHeight="644.0" prefWidth="855.0">
-                                 <children>
-                                    <HBox prefHeight="59.0" prefWidth="859.0" styleClass="light-gray-background" stylesheets="@application.css">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="50.0" prefWidth="151.0" text="日期">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="60.0" prefWidth="190.0" text="活動">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="52.0" prefWidth="223.0" text="簡介">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="92.0" text="人數">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="91.0" text="加入">
-                                             <font>
-                                                <Font size="22.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="113.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <ScrollPane prefHeight="599.0" prefWidth="851.0">
-                                       <content>
-                                          <VBox fx:id="Layout" prefHeight="598.0" prefWidth="837.0" />
-                                       </content>
-                                    </ScrollPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="profilepage" prefHeight="775.0" prefWidth="911.0" stylesheets="@application.css">
                <styleClass>
                   <String fx:value="primary-color" />
@@ -727,6 +645,88 @@
                      </children>
                      <padding>
                         <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="datingpage" prefHeight="747.0" prefWidth="902.0" stylesheets="@application.css" StackPane.alignment="CENTER">
+               <styleClass>
+                  <String fx:value="primary-color" />
+                  <String fx:value="secondary-color" />
+               </styleClass>
+               <children>
+                  <VBox alignment="CENTER" layoutX="12.0" layoutY="6.0" prefHeight="754.0" prefWidth="883.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="99.0" prefWidth="168.0" text="Dating" textFill="WHITE">
+                                 <font>
+                                    <Font name="BM KIRANGHAERANG OTF" size="50.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="BtnUpdate" mnemonicParsing="false" onAction="#UpdateThePost" styleClass="editbutton" stylesheets="@application.css" text="update" textFill="WHITE">
+                                 <font>
+                                    <Font name="Avenir Next Condensed Bold" size="19.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <AnchorPane prefHeight="657.0" prefWidth="876.0">
+                           <children>
+                              <VBox prefHeight="644.0" prefWidth="855.0">
+                                 <children>
+                                    <HBox prefHeight="59.0" prefWidth="859.0" styleClass="light-gray-background" stylesheets="@application.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="50.0" prefWidth="151.0" text="日期">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="60.0" prefWidth="190.0" text="活動">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="52.0" prefWidth="223.0" text="簡介">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="92.0" text="人數">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="51.0" prefWidth="91.0" text="加入">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="113.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <ScrollPane prefHeight="599.0" prefWidth="851.0">
+                                       <content>
+                                          <VBox fx:id="Layout" prefHeight="598.0" prefWidth="837.0" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
                      </padding>
                   </VBox>
                </children>

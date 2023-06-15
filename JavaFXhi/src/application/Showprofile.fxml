@@ -89,7 +89,7 @@
                               </Label>
                               <Label fx:id="userDepartment" prefHeight="29.0" prefWidth="81.0" stylesheets="@application.css" text="應數系" textFill="WHITE">
                                  <font>
-                                    <Font name="YuMincho Medium" size="23.0" />
+                                    <Font size="23.0" />
                                  </font>
                               </Label>
                               <Label fx:id="userGrade" prefHeight="36.0" prefWidth="16.0" stylesheets="@application.css" text="4" textFill="WHITE">
@@ -99,7 +99,7 @@
                               </Label>
                               <Label fx:id="userGrade1" prefHeight="37.0" prefWidth="72.0" stylesheets="@application.css" text="年級" textFill="WHITE">
                                  <font>
-                                    <Font name="YuMincho Medium" size="20.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>
@@ -210,7 +210,7 @@
                               </Label>
                               <Label fx:id="userPurpose" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="純交友" textFill="WHITE">
                                  <font>
-                                    <Font name="YuMincho Medium" size="20.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>
@@ -224,7 +224,7 @@
                               </Label>
                               <Label fx:id="userDrinkinghabitSmokinghabit" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="不菸不酒" textFill="WHITE">
                                  <font>
-                                    <Font name="YuMincho Medium" size="20.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>
@@ -238,7 +238,7 @@
                               </Label>
                               <Label fx:id="userSexualperference" prefHeight="55.0" prefWidth="270.0" stylesheets="@application.css" text="異性戀" textFill="WHITE">
                                  <font>
-                                    <Font name="YuMincho Medium" size="20.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>

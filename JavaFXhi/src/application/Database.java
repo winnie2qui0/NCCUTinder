@@ -553,7 +553,7 @@ public class Database {
 	public List<ActivityInformation> GetActivity() throws SQLException, InterruptedException, ExecutionException {
 		 Future<List<ActivityInformation>> future = executorService.submit(() -> {
 	    List<ActivityInformation> activities = new ArrayList<>();
-	    String query = "SELECT * FROM Post ORDER BY date ";
+	    String query = "SELECT * FROM Post WHERE date >= CURDATE() ORDER BY date ";
 
 	    try(
                Connection conn = DriverManager.getConnection(url, username, password);

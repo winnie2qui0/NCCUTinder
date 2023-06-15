@@ -135,7 +135,12 @@ public class ActivityitemController implements Initializable{
 	        waiting = waitingTask.getValue();
 	        Joinperson = waiting.size();
 	        currentnumber = acti.getPeoplenumbers();
-	        peoplenumbers.setText(String.format("%d / %d", Joinperson, currentnumber));
+	        if(Joinperson==currentnumber) {
+	        	 peoplenumbers.setText("已滿");
+	        }else {
+	        	peoplenumbers.setText(String.format("%d / %d", Joinperson, currentnumber));
+	        }
+	        
 	    });
 	    new Thread(waitingTask).start();
 	}

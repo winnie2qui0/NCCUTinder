@@ -38,6 +38,9 @@ public class ShowprofileController {
 	@FXML
 	private Button exit;
 	@FXML
+	private Label userPurpose;
+	
+	@FXML
 	private ImageView ShowProfileImage;
 	
 	@FXML
@@ -59,7 +62,7 @@ public class ShowprofileController {
 		userGender.setText(p.getGender());
 		userIG.setText(p.getInstagram());
 		userFB.setText(p.getFacebook());
-		
+		userPurpose.setText(p.getPurpose());
 		
 		userCelebrity.setText(p.getCelebrity());
 		if(p.getDrinkinghabit()==1 && p.getSmokinghabit()==1){
