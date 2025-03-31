@@ -43,3 +43,53 @@ src/application/
 ├── Profile.java / User.java    # 使用者資料物件
 ├── Database.java               # 簡易資料模擬儲存
 ├── application.css             # 全域樣式
+```
+
+# 💬 NCCU Tinder – Campus Social Platform (JavaFX Desktop App)
+
+**NCCU Tinder** is a desktop social networking application built for students at National Chengchi University.  
+Developed using **Java** and **JavaFX**, the app allows users to register, log in, browse themed activities, and view other participants’ profiles to foster meaningful campus interactions.
+
+This project demonstrates proficiency in **MVC architecture**, **FXML-based UI development**, and **Object-Oriented Programming (OOP)** principles, and was independently developed as part of my university coursework.
+
+---
+
+## 🎯 Features
+
+- 🧑‍🎓 User Registration & Login
+- 📅 Themed Activity Listing & Join Function
+- 🪪 Profile Viewing of Activity Participants
+- 📥 Waiting List Management
+- 🧩 JavaFX UI Design with FXML & CSS
+- 💬 Future-ready structure for adding chat & recommendations
+
+---
+
+## 🛠 Tech Stack
+
+- **Language:** Java 11
+- **UI Framework:** JavaFX (FXML + CSS)
+- **Architecture:** MVC Pattern
+- **IDE:** IntelliJ IDEA / Eclipse
+
+---
+
+## 📁 Folder Structure
+
+src/application/ ├── Main.java ├── Login.fxml / LoginController.java ├── Dating.fxml / DatingController.java ├── Activityitem.fxml / ActivityitemController.java ├── Showprofile.fxml / ShowprofileController.java ├── WaitingList.fxml / WaitingListController.java ├── User.java / Profile.java ├── Database.java ├── application.css
+
+
+---
+
+## ▶️ How to Run
+
+### Prerequisites:
+- Java 11+
+- JavaFX SDK installed
+- IDE (IntelliJ IDEA or Eclipse)
+
+### Steps:
+1. Clone the project:
+```bash
+git clone https://github.com/yourusername/nccu-tinder.git
+
