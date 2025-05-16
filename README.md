@@ -1,6 +1,6 @@
-# 💬 NCCU Tinder – 校園社交平台（JavaFX Desktop App）
+#  NCCU Tinder – 校園社交平台（JavaFX Desktop App）
 
-## 📌 簡介（中文）
+## 📌 簡介
 
 **NCCU Tinder** 是一款為政治大學學生設計的桌面社交應用程式，使用 **Java** 搭配 **JavaFX** 製作。  
 透過平台，使用者可以註冊、登入、查看主題活動資訊、瀏覽參加者檔案，促進校園內部的社交互動。
@@ -9,12 +9,11 @@
 
 ---
 
-## 💡 專案亮點
-- 🧑‍💻 使用者註冊與登入
-- 📅 主題活動建立與報名
-- 🪪 個人檔案查看與名單管理
-- 📂 採用 MVC 架構與 JavaFX FXML 架 UI
-- 💬 預留擴充聊天室與配對功能的結構
+## 💡 功能簡介
+-  使用者註冊與登入
+-  主題活動建立與報名
+-  個人檔案查看與名單管理
+-  採用 MVC 架構與 JavaFX FXML 架 UI
 
 ---
 
@@ -34,18 +33,18 @@
 
 ## 📂 專案結構
 src/application/
-├── Main.java                   # 主程式入口
-├── Login.fxml / Controller     # 登入畫面與邏輯
-├── Activityitem.fxml           # 活動列表元件
-├── Dating.fxml / Controller    # 主配對頁面
-├── Showprofile.fxml            # 檢視使用者資訊
-├── WaitingList.fxml            # 報名名單管理
-├── Profile.java / User.java    # 使用者資料物件
-├── Database.java               # 簡易資料模擬儲存
-├── application.css             # 全域樣式
+├── Main.java                  
+├── Login.fxml / Controller     
+├── Activityitem.fxml           
+├── Dating.fxml / Controller    
+├── Showprofile.fxml            
+├── WaitingList.fxml            
+├── Profile.java / User.java    
+├── Database.java               
+├── application.css            
 ```
 
-# 💬 NCCU Tinder – Campus Social Platform (JavaFX Desktop App)
+# NCCU Tinder – Campus Social Platform (JavaFX Desktop App)
 
 **NCCU Tinder** is a desktop social networking application built for students at National Chengchi University.  
 Developed using **Java** and **JavaFX**, the app allows users to register, log in, browse themed activities, and view other participants’ profiles to foster meaningful campus interactions.
@@ -56,12 +55,11 @@ This project demonstrates proficiency in **MVC architecture**, **FXML-based UI d
 
 ## 🎯 Features
 
-- 🧑‍🎓 User Registration & Login
-- 📅 Themed Activity Listing & Join Function
-- 🪪 Profile Viewing of Activity Participants
-- 📥 Waiting List Management
-- 🧩 JavaFX UI Design with FXML & CSS
-- 💬 Future-ready structure for adding chat & recommendations
+- User Registration & Login
+- Themed Activity Listing & Join Function
+- Profile Viewing of Activity Participants
+- Waiting List Management
+- JavaFX UI Design with FXML & CSS
 
 ---
 
