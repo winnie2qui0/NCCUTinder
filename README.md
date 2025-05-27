@@ -17,7 +17,7 @@
 - 查看主揪及加入使用者詳情
 - 主揪可以刪除活動
 -  採用 MVC 架構與 JavaFX FXML 架 UI
-👉 **[系統說明書](https://docs.google.com/document/d/1oC_NeZmZ3JNe3TIKhm_2IIPQH-Fo-wnPqZvmvs-MfXQ/edit?usp=sharing)**   
+- 👉 **[系統說明書](https://docs.google.com/document/d/1oC_NeZmZ3JNe3TIKhm_2IIPQH-Fo-wnPqZvmvs-MfXQ/edit?usp=sharing)**   
 
 ---
 
