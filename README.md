@@ -17,6 +17,12 @@
 
 ---
 
+## 📽 Demo 影片
+
+👉 **[Click here to watch the demo video](https://drive.google.com/file/d/1Reaa_J-hm_2fWNx7P3gKHQQidp98Tiew/view?usp=sharing)**  
+
+---
+
 ## 🚀 執行方式
 
 ### 系統需求：
