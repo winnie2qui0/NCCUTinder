@@ -10,16 +10,20 @@
 ---
 
 ## 💡 功能簡介
--  使用者註冊與登入
--  主題活動建立與報名
--  個人檔案查看與名單管理
+- 使用者註冊登入
+- 創建活動
+- 查看活動詳情
+- 加入及退出活動
+- 查看主揪及加入使用者詳情
+- 主揪可以刪除活動
 -  採用 MVC 架構與 JavaFX FXML 架 UI
+👉 **[系統說明書](https://docs.google.com/document/d/1oC_NeZmZ3JNe3TIKhm_2IIPQH-Fo-wnPqZvmvs-MfXQ/edit?usp=sharing)**   
 
 ---
 
 ## 📽 Demo 影片
 
-👉 **[Click here to watch the demo video](https://drive.google.com/file/d/1Reaa_J-hm_2fWNx7P3gKHQQidp98Tiew/view?usp=sharing)**  
+👉 **[點擊看系統影片](https://drive.google.com/file/d/1Reaa_J-hm_2fWNx7P3gKHQQidp98Tiew/view?usp=sharing)**  
 
 ---
 
