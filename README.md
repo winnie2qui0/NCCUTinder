@@ -23,7 +23,7 @@
 
 ## 📽 Demo 影片
 
-👉 **[點擊看系統影片](https://drive.google.com/file/d/1Reaa_J-hm_2fWNx7P3gKHQQidp98Tiew/view?usp=sharing)**  
+👉 **[點擊看系統demo](https://drive.google.com/file/d/1Reaa_J-hm_2fWNx7P3gKHQQidp98Tiew/view?usp=sharing)**  
 
 ---
 
